@@ -1,5 +1,6 @@
 #from proyecto import PI   #aca importamos la constante PI creada en mi otra variable
 
+
 def suma(num1, num2):# Esto me ayudara a realizar la suma entre dos numeros
     return num1 + num2
 
