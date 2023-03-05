@@ -1,4 +1,5 @@
-# Esta clase contendra la informacion pertenesiente al proveedor
+# Esta clase contendra la informacion pertenesiente al proveedor, de forma breve
+# como nombre, producto, 
 #
 
 class Distribuidor:
