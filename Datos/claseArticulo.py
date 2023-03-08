@@ -4,10 +4,11 @@
 lista_articulos = [] # aca me almacenara todos los articulos
 class Articulo:
     
-    def __init__(self,nombre_articulo,tipo,costo, añadir_articulo) -> None:
-        self.nombre_articulo = nombre_articulo # para añadirle una marca al articulo
-        self.tipo_articulo = tipo  # para distinguir el tipo de articulo
-        self.costo_articulo = costo # para determinar el costo del articulo
+    def __init__(self) -> None:
+        self.nombre_articulo = None # para añadirle una marca al articulo
+        self.tipo_articulo = None  # para distinguir el tipo de articulo
+        self.costo_articulo = None # para determinar el costo del articulo
+        self.distribuidr_articulo = None
        # self.añadir_articulo = añadir_articulo
         
 
