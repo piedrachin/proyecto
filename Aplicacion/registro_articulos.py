@@ -29,7 +29,12 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         reg_ex_two = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$")
         input_validator_two = QtGui.QRegularExpressionValidator(reg_ex_two, self.ui.txt_cantidad_articulo)
         self.ui.txt_cantidad_articulo.setValidator(input_validator_two)
-    
+        
+        
+        #self.ui.cbx_bodega_N.mouseDoubleClickEvent.c
+        
+        
+        
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate())
     
@@ -42,8 +47,9 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         self.operacion_registro.costo_articulo = float(self.ui.txt_costo_articulo.text())# para el costo
         #self.operacion_registro.añadir_articulo_a = self.ui.cbx_bodega_N.currentIndex()
         añadir_a = self.ui.cbx_bodega_N.currentIndex()
-        self.operacion_registro.añadir_articulo_a = "1" if añadir_a == 0 else "2" # con esto tentativo
-      #  self.operacion_registro.añadir_articulo_a = "1" if añadir_a == self.modelolista else self.modelo_mortero
+        self.operacion_registro.añadir_articulo_a = 'A' if añadir_a == 0 else 'I'
+       # con esto tentativo
+        #self.operacion_registro.añadir_articulo_a = "1" if añadir_a == self.modelolista else self.modelo_mortero
       
         #selecciono alguno de mis combo box
         itemView = (self.operacion_registro.nombre_articulo+# con esto me permite crear una variable
@@ -53,5 +59,7 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
                     +str(self.operacion_registro.cantidad_articulo))#" "+
                    # str(self.ui.date_fecha_articulo.setCalendar(self,calendar: Qcalendar)))
         item = QtGui.QStandardItem(itemView)
-        self.modelolista.appendRow(item)   
+       # item_two = QtGui.QStandardItem(itemView)
+      #  self.modelo_mortero.appendRow(item_two)   
+        self.modelolista.appendRow(item)
         #elf.modelo_mortero.appendRow(item)
