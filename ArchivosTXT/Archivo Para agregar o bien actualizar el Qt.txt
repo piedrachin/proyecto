@@ -1,0 +1,1 @@
+pyuic6 UI_proyecto.ui -o uiproyecto.py
