@@ -3,9 +3,10 @@
 #
 
 class Distribuidor:
-    def __init__(self, nombre, ced_juridica, tipo_producto) -> None:
-        self.nombre = nombre
-        self.ced_juridica = ced_juridica
-        self.tipo_producto = tipo_producto
-        self.cantidad_producto= None
+    def __init__(self) -> None:
+        self.nombre_distribuidor = None
+        self.ced_juridica_distribuidor = None
+        self.tipo_articulo = None
+        self.cantidad_articulo= None
+        self.telefono_distribuidor = None
         

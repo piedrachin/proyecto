@@ -1,0 +1,3 @@
+Esta carpeta llamada Datos tendra creadas las clases, que utilizare tanto para el perfil distribuidor,
+creacion de bodegas y como podre registrar mis articulos. De los cuales creare un objeto clase en mi carpeta
+de aplicacion.
