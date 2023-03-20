@@ -22,6 +22,8 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         self.ui.list_bodega_Madera.setModel(self.modelolista)# aca indico donde quiero que se vea
         self.modelo_mortero = QtGui.QStandardItemModel()
         self.ui.listView_bodeg_Morteros.setModel(self.modelo_mortero)
+        
+        
          
         reg_ex = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$")# con esto permito que solo sean numeros, no texto
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo_articulo)# con esto lo que hago es seleccionar que va en numeros no txt
