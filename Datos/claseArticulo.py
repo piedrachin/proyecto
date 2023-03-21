@@ -15,6 +15,8 @@ class Registro_articulo:
         self.añadir_articulo_a = None
         self.fecha_se_añade_articulo = None
         
+       # self.formato_codigo = "PP#{0}"
+        #self.codigo_consecutivo = 1  
 
 #anañir = lista_articulos[lista_articulos]
 #anañir = lista_articulos.append(input("Que articulo desea añadir: "))

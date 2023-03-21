@@ -1,1 +1,4 @@
-pyuic6 UI_proyecto.ui -o uiproyecto.py
+pyuic6 Ui_registro.ui -o uiRegistro.py
+
+# ComboBox ejemplos de uso en el siguiente link
+20Create%20a%20Simple%20Drop-Down%20List.%20This,the%20drop-down%20list%20to%20display%20static%20text%2C%20https://linuxhint.com/use-pyqt-qcombobox/#:~:text=Example%201%3A%
