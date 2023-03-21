@@ -13,6 +13,9 @@ codigo_consecutivo = 1 # para que los de aleaotoriamente
 #lista_codigo = []
 
 
+formato_codigo = "PP#{0}"
+constante_codigo = 1
+
 class Frm_Registro_Articulo(QtWidgets.QDialog):
     def __init__(self) -> None:
         super().__init__()
@@ -49,16 +52,21 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate())
     
     def btnAgregar_Al_darle_click_en_Registro_Articulo(self):
+
         global codigo_consecutivo # esto me ayuda a darle un formato a mi codigo producto 
         codigo_consecutivo = codigo_consecutivo + 1
-        numCod = str(codigo_consecutivo).rjust(3,'0')
+        num_codigo = str(codigo_consecutivo).rjust(3,'0')
         
         self.operacion_registro = Registro_articulo()# con esto instancio mi objeto y puedo usar los atributos
         # que se encuentran en mi clase "Registro_articulo" guardados
-        self.operacion_registro.codigo_articulo = formato_codigo.format(numCod)# con esto le doy forma
-        
+        self.operacion_registro.codigo_articulo = formato_codigo.format(num_codigo)# con esto le doy forma 
         self.ui.txt_codigo_articulo.setText(""+ self.operacion_registro.codigo_articulo)#-->>
+        
         self.operacion_registro.nombre_articulo = self.ui.txt_nombre_articulo.text()# para el nombre
+
+        #self.operacion_registro.codigo_articulo = self.ui.txt_codigo_articulo.text()# para el codigo
+      #  self.operacion_registro.codigo_articulo = constante_codigo.format(num_codigo)
+
         self.operacion_registro.cantidad_articulo = float(self.ui.txt_cantidad_articulo.text())# para la cantidad
         self.operacion_registro.costo_articulo = float(self.ui.txt_costo_articulo.text())# para el costo 
         añadir_a = self.ui.cbx_bodega_N.currentIndex()
