@@ -5,7 +5,10 @@
 import sys
 from Aplicacion.clasePersistencia import *
 from UI.uiControl_Inventario import Ui_V_Registro_Inventario
+from Datos.claseBodega import *
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QComboBox
+from UI.uiCrear_bodega import Ui_Registro_bodega
 from UI.uiRegistro import Ui_Registro_Ui  # para importar los objetos creados en mi QT y manipularlos
 from Datos.claseArticulo import Registro_articulo # con esto puedo manipular los objetos creado en mi clase articulo
 formato_codigo = "CP#{0}"# estos atributos me ayudaran a dar formato a mis codigos
@@ -13,8 +16,8 @@ codigo_consecutivo = 1 # para que los de aleaotoriamente
 #lista_codigo = []
 
 
-formato_codigo = "PP#{0}"
-constante_codigo = 1
+#formato_codigo = "PP#{0}"
+#constante_codigo = 1
 
 class Frm_Registro_Articulo(QtWidgets.QDialog):
     def __init__(self) -> None:
@@ -29,8 +32,8 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         # con esto puedo enviar mi modelo registro a un list view previamente creado
         self.modelolista = QtGui.QStandardItemModel() # con esto lo nombro
         self.ui.list_bodega_Madera.setModel(self.modelolista)# aca indico donde quiero que se vea
-        self.modelo_mortero = QtGui.QStandardItemModel()
-        self.ui.listView_bodeg_Morteros.setModel(self.modelo_mortero)
+       # self.modelo_mortero = QtGui.QStandardItemModel()
+        #self.ui.listView_bodeg_Morteros.setModel(self.modelo_mortero)
         
         
          
@@ -119,6 +122,38 @@ class Control_Inventario(QtWidgets.QDialog):
             self.ui.tabla_inventario.setItem(num_filas,3,Costo)
           #  self.ui.tabla_inventario.setItem(num_filas,4,Fecha)
             num_filas += 1
-            
+
+
+class Crear_Bodegas(QtWidgets.QDialog): # contendra lo perteneciente a las bodegas
+        def __init__(self) -> None:
+             super().__init__()
+             self.ui = Ui_Registro_bodega() # metodo para manejar mi inventario
+             self.ui.setupUi(self)
+             self.ui.btn_crear_bodega.clicked.connect(self.onClick_crear_bodega)
+             self.crear_bodega = None
+            # self.comboBox = Registro_articulo(QComboBox)
+             self.modelolista = QtGui.QStandardItemModel() # con esto lo nombro
+             self.ui.listView_bodegas.setModel(self.modelolista)
+             
+             self.re_comboBox = Frm_Registro_Articulo()
+             self.re_comboBox.ui.cbx_bodega_N.addItem(self.ui.txt_nombre_bodega.text())
+             self.re_comboBox.ui.cbx_bodega_N.activated[str].connect(self.onSelection)
+        
+        def onSelection(self):
+                pass
+                
+             
+        def onClick_crear_bodega(self):
+               # self.re_comboBox = Frm_Registro_Articulo()
+                self.crear_bodega = Bodega()# instancio para usar los metodos de mi clase objeto
+                self.crear_bodega.nombre_bodega = self.ui.txt_nombre_bodega.text()
+             #   self.re_comboBox.ui.cbx_bodega_N.addItem()
+            #    self.re_comboBox.ui.cbx_bodega_N.activated[str].connect(self.crear_bodega.nombre_bodega)
+                itemView = (self.crear_bodega.nombre_bodega)
+                item = QtGui.QStandardItem(itemView)
+                self.modelolista.appendRow(item)
+              #  Persistencia.crear_bodegas(self.crear_bodega)
+                
+
             
          

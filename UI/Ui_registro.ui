@@ -143,16 +143,6 @@
      <height>22</height>
     </rect>
    </property>
-   <item>
-    <property name="text">
-     <string>Bodega Madera</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Bodega Morteros</string>
-    </property>
-   </item>
   </widget>
   <widget class="QDateEdit" name="date_fecha_articulo">
    <property name="geometry">
@@ -182,17 +172,7 @@
     <rect>
      <x>10</x>
      <y>220</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QListView" name="listView_bodeg_Morteros">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>220</y>
-     <width>256</width>
+     <width>571</width>
      <height>192</height>
     </rect>
    </property>

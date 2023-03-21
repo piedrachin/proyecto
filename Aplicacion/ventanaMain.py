@@ -2,6 +2,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from UI.uiMainWindow import Ui_Main_Window # para hacer uso de mi ventana Main, para poder usar las subventanas
 from Aplicacion.registro_articulos import *
 
+
 class Ventana_Main(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
@@ -23,7 +24,8 @@ class Ventana_Main(QtWidgets.QMainWindow):
         self.pantalla_registro.show()# con el metodo show hago visible la ventana
     
     def OnClick_Manejo_Bodegas(self):
-        pass
+        self.pantalla_bodega = Crear_Bodegas()
+        self.pantalla_bodega.show()
     
     def OnClick_Registro_Distribuidores(self):
         pass

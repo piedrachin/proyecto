@@ -8,4 +8,6 @@ class Persistencia:
     @classmethod    
     def control_articulo(self):
         return self.listado_Articulos
-    ##
+    @classmethod
+    def crear_bodegas(self):
+        pass
