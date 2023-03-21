@@ -46,7 +46,7 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         
         
         #lista_codigo.append[self.ui.txt_codigo_articulo]
-        
+        #
         
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate())

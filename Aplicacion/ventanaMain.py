@@ -31,3 +31,4 @@ class Ventana_Main(QtWidgets.QMainWindow):
     def OnClick_Control_Articulos(self):
         self.pantalla_control_articulos = Control_Inventario()
         self.pantalla_control_articulos.show()
+#

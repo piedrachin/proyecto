@@ -8,4 +8,4 @@ class Persistencia:
     @classmethod    
     def control_articulo(self):
         return self.listado_Articulos
-    
+    ##
