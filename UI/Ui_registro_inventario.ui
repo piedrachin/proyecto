@@ -42,17 +42,17 @@
    </column>
    <column>
     <property name="text">
+     <string>Costo</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>Fecha</string>
     </property>
    </column>
    <column>
     <property name="text">
      <string>Bodega</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Distribuidor</string>
     </property>
    </column>
   </widget>

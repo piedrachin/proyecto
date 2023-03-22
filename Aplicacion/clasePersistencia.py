@@ -11,3 +11,6 @@ class Persistencia:
     @classmethod
     def crear_bodegas(self):
         pass
+    @classmethod
+    def perfil_distribuidores(self):
+        pass

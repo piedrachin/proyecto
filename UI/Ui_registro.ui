@@ -177,6 +177,32 @@
     </rect>
    </property>
   </widget>
+  <widget class="QCheckBox" name="cbox_bodega2">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>130</y>
+     <width>70</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Bodega 2</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="cbx_bodega1">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>130</y>
+     <width>70</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Bodega 1</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

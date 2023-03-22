@@ -56,6 +56,12 @@ class Ui_Registro_Ui(object):
         self.list_bodega_Madera = QtWidgets.QListView(parent=Registro_Ui)
         self.list_bodega_Madera.setGeometry(QtCore.QRect(10, 220, 571, 192))
         self.list_bodega_Madera.setObjectName("list_bodega_Madera")
+        self.cbox_bodega2 = QtWidgets.QCheckBox(parent=Registro_Ui)
+        self.cbox_bodega2.setGeometry(QtCore.QRect(340, 130, 70, 17))
+        self.cbox_bodega2.setObjectName("cbox_bodega2")
+        self.cbx_bodega1 = QtWidgets.QCheckBox(parent=Registro_Ui)
+        self.cbx_bodega1.setGeometry(QtCore.QRect(260, 130, 70, 17))
+        self.cbx_bodega1.setObjectName("cbx_bodega1")
 
         self.retranslateUi(Registro_Ui)
         QtCore.QMetaObject.connectSlotsByName(Registro_Ui)
@@ -70,3 +76,5 @@ class Ui_Registro_Ui(object):
         self.label_4.setText(_translate("Registro_Ui", "Costo Articulo"))
         self.label_5.setText(_translate("Registro_Ui", "Asignar Bodega"))
         self.label_6.setText(_translate("Registro_Ui", "Fecha"))
+        self.cbox_bodega2.setText(_translate("Registro_Ui", "Bodega 2"))
+        self.cbx_bodega1.setText(_translate("Registro_Ui", "Bodega 1"))

@@ -28,7 +28,8 @@ class Ventana_Main(QtWidgets.QMainWindow):
         self.pantalla_bodega.show()
     
     def OnClick_Registro_Distribuidores(self):
-        pass
+        self.pantalla_distribuidores = Crear_Distribuidor()
+        self.pantalla_distribuidores.show()
     
     def OnClick_Control_Articulos(self):
         self.pantalla_control_articulos = Control_Inventario()

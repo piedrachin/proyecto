@@ -4,8 +4,10 @@
 
 import sys
 from Aplicacion.clasePersistencia import *
+from UI.uiReg_distribuidor import Ui_ventana_distribuidor
 from UI.uiControl_Inventario import Ui_V_Registro_Inventario
 from Datos.claseBodega import *
+from Datos.claseDistribuidor import *
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QComboBox
 from UI.uiCrear_bodega import Ui_Registro_bodega
@@ -13,7 +15,7 @@ from UI.uiRegistro import Ui_Registro_Ui  # para importar los objetos creados en
 from Datos.claseArticulo import Registro_articulo # con esto puedo manipular los objetos creado en mi clase articulo
 formato_codigo = "CP#{0}"# estos atributos me ayudaran a dar formato a mis codigos
 codigo_consecutivo = 1 # para que los de aleaotoriamente
-#lista_codigo = []
+lista_distribuidor = []
 
 
 #formato_codigo = "PP#{0}"
@@ -46,11 +48,21 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
      #   self.ui.txt_codigo_articulo.setText(formato_codigo)
         self.ui.txt_codigo_articulo.setReadOnly(True)
      #  self.ui.txt_codigo_articulo.setT
+        self.ui.cbx_bodega1.setCheckable(True)
+        self.ui.cbox_bodega2.setCheckable(True)
+        self.ui.cbx_bodega1.stateChanged.connect(self.allow)
+       # self.ui.cbx_bodega1.stateChanged.connect(self.btnAgregar_Al_darle_click_en_Registro_Articulo)
         
         
         #lista_codigo.append[self.ui.txt_codigo_articulo]
         #
-        
+    def allow(self):
+        if self.ui.cbx_bodega1.isChecked():
+            self.ui.cbx_bodega1.setCheckable(True)
+            self.ui.cbox_bodega2.setCheckable(False)
+        else:
+           self.ui.cbox_bodega2.setCheckable(True) # aca me habilita el checkBox_2
+           self.ui.cbx_bodega1.setCheckable(False)
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate())
     
@@ -82,8 +94,9 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
                     " -- "+self.operacion_registro.codigo_articulo+# que me contendra todo lo perteneciente a mi clase
                     " -- "+ # registro, y se imprimira en mi listview, sea de maderas o morteros
                     str(self.operacion_registro.costo_articulo)+"  "
-                    +str(self.operacion_registro.cantidad_articulo))#" "+
-                   # str(self.ui.date_fecha_articulo.setCalendar(self,calendar: Qcalendar)))
+                    +str(self.operacion_registro.cantidad_articulo)+" "
+                    +self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate()))
+                    
         item = QtGui.QStandardItem(itemView)
       #  item_two = QtGui.QStandardItem(itemView)
     
@@ -114,17 +127,19 @@ class Control_Inventario(QtWidgets.QDialog):
             Codigo = QtWidgets.QTableWidgetItem(cada_articulo.codigo_articulo)
             Cantidad = QtWidgets.QTableWidgetItem(str(cada_articulo.cantidad_articulo))
             Costo = QtWidgets.QTableWidgetItem(str(cada_articulo.costo_articulo))
-           # Fecha = QtWidgets.QTableWidgetItem(cada_articulo.fecha)
+            Fecha = QtWidgets.QTableWidgetItem(cada_articulo.date_fecha_articulo)
             
             self.ui.tabla_inventario.setItem(num_filas,0,Nombre)
             self.ui.tabla_inventario.setItem(num_filas,1,Codigo)
             self.ui.tabla_inventario.setItem(num_filas,2,Cantidad)
             self.ui.tabla_inventario.setItem(num_filas,3,Costo)
-          #  self.ui.tabla_inventario.setItem(num_filas,4,Fecha)
+            self.ui.tabla_inventario.setItem(num_filas,4,Fecha)
             num_filas += 1
 
 
 class Crear_Bodegas(QtWidgets.QDialog): # contendra lo perteneciente a las bodegas
+  
+  
         def __init__(self) -> None:
              super().__init__()
              self.ui = Ui_Registro_bodega() # metodo para manejar mi inventario
@@ -152,8 +167,29 @@ class Crear_Bodegas(QtWidgets.QDialog): # contendra lo perteneciente a las bodeg
                 itemView = (self.crear_bodega.nombre_bodega)
                 item = QtGui.QStandardItem(itemView)
                 self.modelolista.appendRow(item)
-              #  Persistencia.crear_bodegas(self.crear_bodega)
-                
+              #  Persistencia.crear_bodegas(self.crear_bodega              
 
+
+class Crear_Distribuidor(QtWidgets.QDialog):
+  def __init__(self) -> None:
+       super().__init__()
+       self.ui = Ui_ventana_distribuidor()
+       self.ui.setupUi(self)
+       self.reg_distribuidor = None
+       self.distribuidores = []
+       #self.ui.btn_crear_distribuidor(command =lambda:my_insert())
+       self.ui.btn_crear_distribuidor.clicked.connect(self.onClick_crea_distribuidor)
+  
+    
+    
+  def onClick_crea_distribuidor(self):
+    self.reg_distribuidor = Distribuidor()
+    self.reg_distribuidor.ced_juridica_distribuidor = float(self.ui.txt_ced_juridica_dist.text())
+    self.reg_distribuidor.nombre_distribuidor = self.ui.txt_nombre_dist.text()
+    self.reg_distribuidor.telefono_distribuidor = float(self.ui.txt_telefono_dist.text())
+   # self.ui.cmb_distribuidores.addItem(" ") = self.reg_distribuidor.nombre_distribuidor.text()
+    #self.ui.cmb_distribuidores.addItem[str](self.reg_distribuidor.nombre_distribuidor.text())
+ 
+     
             
          
