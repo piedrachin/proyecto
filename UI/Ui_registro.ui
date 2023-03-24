@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="btn_registrar_articulo">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>320</x>
      <y>160</y>
      <width>75</width>
      <height>23</height>
@@ -171,36 +171,10 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>220</y>
+     <y>200</y>
      <width>571</width>
      <height>192</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="cbox_bodega2">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>130</y>
-     <width>70</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Bodega 2</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="cbx_bodega1">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>130</y>
-     <width>70</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Bodega 1</string>
    </property>
   </widget>
  </widget>

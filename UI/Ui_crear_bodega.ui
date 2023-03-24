@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
-    <height>308</height>
+    <width>655</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>220</y>
+     <y>200</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -39,26 +39,13 @@
     <string>Nombre Bodega</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>111</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cantidad Materiales</string>
-   </property>
-  </widget>
   <widget class="QListView" name="listView_bodegas">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>100</y>
-     <width>256</width>
-     <height>192</height>
+     <x>120</x>
+     <y>80</y>
+     <width>511</width>
+     <height>61</height>
     </rect>
    </property>
   </widget>
@@ -84,6 +71,51 @@
      <height>20</height>
     </rect>
    </property>
+  </widget>
+  <widget class="QComboBox" name="cmb_bodegas_creadas">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>69</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tbl_bodega_creada">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>170</y>
+     <width>511</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Nombre</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Codigo</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Cantidad</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Costo</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Fecha</string>
+    </property>
+   </column>
   </widget>
  </widget>
  <resources/>

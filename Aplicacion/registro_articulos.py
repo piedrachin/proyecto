@@ -48,21 +48,20 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
      #   self.ui.txt_codigo_articulo.setText(formato_codigo)
         self.ui.txt_codigo_articulo.setReadOnly(True)
      #  self.ui.txt_codigo_articulo.setT
-        self.ui.cbx_bodega1.setCheckable(True)
-        self.ui.cbox_bodega2.setCheckable(True)
-        self.ui.cbx_bodega1.stateChanged.connect(self.allow)
+        
+       # self.ui.cbx_bodega1.stateChanged.connect(self.allow)
        # self.ui.cbx_bodega1.stateChanged.connect(self.btnAgregar_Al_darle_click_en_Registro_Articulo)
         
         
         #lista_codigo.append[self.ui.txt_codigo_articulo]
+       # self.crear_bodega = Crear_Bodegas()
         #
-    def allow(self):
-        if self.ui.cbx_bodega1.isChecked():
-            self.ui.cbx_bodega1.setCheckable(True)
-            self.ui.cbox_bodega2.setCheckable(False)
-        else:
-           self.ui.cbox_bodega2.setCheckable(True) # aca me habilita el checkBox_2
-           self.ui.cbx_bodega1.setCheckable(False)
+        '''NOTA: >>> este codigo me permite agregar a mi comboBox, nuevos items
+           # self.ui.btn_add_to_cbx.clicked.connect(self.add_new_item_to_cmb)        
+    #def add_new_item_to_cmb(self):   
+     #   new_item = self.ui.txt_nuevo_cbx.text()
+      #  self.ui.comboBox_list.addItem(new_item)
+        '''
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate())
     
@@ -78,24 +77,22 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
         self.ui.txt_codigo_articulo.setText(""+ self.operacion_registro.codigo_articulo)#-->>
         
         self.operacion_registro.nombre_articulo = self.ui.txt_nombre_articulo.text()# para el nombre
+       # self.crear_bodega = Crear_Bodegas()
 
-        #self.operacion_registro.codigo_articulo = self.ui.txt_codigo_articulo.text()# para el codigo
-      #  self.operacion_registro.codigo_articulo = constante_codigo.format(num_codigo)
+      
+        #nueva_bodega = self.crear_bodega.ui.txt_nombre_bodega.text()
+        #self.ui.cbx_bodega_N.addItem(nueva_bodega) 
+      #  self.crear_bodega.ui.cmb_bodegas_creadas = self.ui.cbx_bodega_N.currentIndex()
 
         self.operacion_registro.cantidad_articulo = float(self.ui.txt_cantidad_articulo.text())# para la cantidad
         self.operacion_registro.costo_articulo = float(self.ui.txt_costo_articulo.text())# para el costo 
-        añadir_a = self.ui.cbx_bodega_N.currentIndex()
-        self.operacion_registro.añadir_articulo_a = "l" if añadir_a == 0 else 1
-       # con esto tentativo
-        #self.operacion_registro.añadir_articulo_a = "1" if añadir_a == self.modelolista else self.modelo_mortero
-      
         #selecciono alguno de mis combo box
-        itemView = (self.operacion_registro.nombre_articulo+# con esto me permite crear una variable
-                    " -- "+self.operacion_registro.codigo_articulo+# que me contendra todo lo perteneciente a mi clase
+        itemView = (self.operacion_registro.nombre_articulo  # con esto me permite crear una variable
+                    +" -- "+self.operacion_registro.codigo_articulo+  # que me contendra todo lo perteneciente a mi clase
                     " -- "+ # registro, y se imprimira en mi listview, sea de maderas o morteros
                     str(self.operacion_registro.costo_articulo)+"  "
-                    +str(self.operacion_registro.cantidad_articulo)+" "
-                    +self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate()))
+                    +str(self.operacion_registro.cantidad_articulo)) #+" "
+                   # +self.ui.date_fecha_articulo.setDate(QtCore.QDate.currentDate()))
                     
         item = QtGui.QStandardItem(itemView)
       #  item_two = QtGui.QStandardItem(itemView)
@@ -103,6 +100,7 @@ class Frm_Registro_Articulo(QtWidgets.QDialog):
        # self.modelo_mortero.appendRow(item_two)   
         self.modelolista.appendRow(item)
         #elf.modelo_mortero.appendRow(item)
+       
         Persistencia.agregar_articulo(self.operacion_registro)
      
     
@@ -134,6 +132,7 @@ class Control_Inventario(QtWidgets.QDialog):
             self.ui.tabla_inventario.setItem(num_filas,2,Cantidad)
             self.ui.tabla_inventario.setItem(num_filas,3,Costo)
             self.ui.tabla_inventario.setItem(num_filas,4,Fecha)
+            
             num_filas += 1
 
 
@@ -149,26 +148,29 @@ class Crear_Bodegas(QtWidgets.QDialog): # contendra lo perteneciente a las bodeg
             # self.comboBox = Registro_articulo(QComboBox)
              self.modelolista = QtGui.QStandardItemModel() # con esto lo nombro
              self.ui.listView_bodegas.setModel(self.modelolista)
+            
+             self.re_comboBox = Frm_Registro_Articulo()# re_comboBox = registrar en comboBox
              
-             self.re_comboBox = Frm_Registro_Articulo()
-             self.re_comboBox.ui.cbx_bodega_N.addItem(self.ui.txt_nombre_bodega.text())
-             self.re_comboBox.ui.cbx_bodega_N.activated[str].connect(self.onSelection)
-        
-        def onSelection(self):
-                pass
-                
              
         def onClick_crear_bodega(self):
-               # self.re_comboBox = Frm_Registro_Articulo()
+
                 self.crear_bodega = Bodega()# instancio para usar los metodos de mi clase objeto
                 self.crear_bodega.nombre_bodega = self.ui.txt_nombre_bodega.text()
-             #   self.re_comboBox.ui.cbx_bodega_N.addItem()
-            #    self.re_comboBox.ui.cbx_bodega_N.activated[str].connect(self.crear_bodega.nombre_bodega)
+                nueva_bodega = self.ui.txt_nombre_bodega.text()
+               # self.re_comboBox.ui.cbx_bodega_N = self.ui.cmb_bodegas_creadas
+                self.ui.cmb_bodegas_creadas.addItem(nueva_bodega)
+              
+                #self.re_comboBox.addItem(nueva_bodega)
                 itemView = (self.crear_bodega.nombre_bodega)
                 item = QtGui.QStandardItem(itemView)
                 self.modelolista.appendRow(item)
-              #  Persistencia.crear_bodegas(self.crear_bodega              
+                           
 
+'''NOTA: >>> este codigo me permite agregar a mi comboBox, nuevos items
+           # self.ui.btn_add_to_cbx.clicked.connect(self.add_new_item_to_cmb)        
+    #def add_new_item_to_cmb(self):   
+     #   new_item = self.ui.txt_nuevo_cbx.text()
+      #  self.ui.comboBox_list.addItem(new_item)'''
 
 class Crear_Distribuidor(QtWidgets.QDialog):
   def __init__(self) -> None:
