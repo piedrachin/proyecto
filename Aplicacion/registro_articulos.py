@@ -212,7 +212,7 @@ class Bodega:
             print(f"{articulo.nombre} - Cantidad: {articulo.cantidad} - Precio: {articulo.precio}")
 
 # Creación de los artículos
-articulo_a = Articulo("Laptop", 1500, 10)
+articulo_a = Articulo("Compu", 1500, 10)
 articulo_b = Articulo("Celular", 800, 20)
 
 # Preguntar al usuario qué artículo desea agregar a la bodega
