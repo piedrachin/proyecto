@@ -192,6 +192,45 @@ class Crear_Distribuidor(QtWidgets.QDialog):
    # self.ui.cmb_distribuidores.addItem(" ") = self.reg_distribuidor.nombre_distribuidor.text()
     #self.ui.cmb_distribuidores.addItem[str](self.reg_distribuidor.nombre_distribuidor.text())
  
-     
+  class Articulo:
+    def __init__(self, nombre, precio, cantidad):
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad = cantidad
+
+class Bodega:
+    def __init__(self):
+        self.inventario = []
+
+    def agregar_articulo(self, articulo):
+        self.inventario.append(articulo)
+        print("Artículo agregado a la bodega.")
+
+    def mostrar_inventario(self):
+        print("Inventario actual:")
+        for articulo in self.inventario:
+            print(f"{articulo.nombre} - Cantidad: {articulo.cantidad} - Precio: {articulo.precio}")
+
+# Creación de los artículos
+articulo_a = Articulo("Laptop", 1500, 10)
+articulo_b = Articulo("Celular", 800, 20)
+
+# Preguntar al usuario qué artículo desea agregar a la bodega
+opcion = input("¿Qué artículo desea agregar a la bodega? (a/b): ")
+
+# Crear la bodega
+bodega = Bodega()
+
+# Agregar el artículo elegido a la bodega
+if opcion == "a":
+    bodega.agregar_articulo(articulo_a)
+elif opcion == "b":
+    bodega.agregar_articulo(articulo_b)
+else:
+    print("Opción no válida.")
+
+# Mostrar el inventario actual de la bodega
+bodega.mostrar_inventario()
+
             
          
