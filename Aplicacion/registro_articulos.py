@@ -231,6 +231,3 @@ else:
 
 # Mostrar el inventario actual de la bodega
 bodega.mostrar_inventario()
-
-            
-         
