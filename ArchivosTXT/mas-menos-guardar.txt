@@ -1,1 +1,0 @@
-https://es.stackoverflow.com/questions/345125/bot%c3%b3n-guardar-en-interfaz-desarrollada-con-pyqt5
