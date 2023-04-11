@@ -1,0 +1,81 @@
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: plywood 5.5mm 1.22x2.44 
+Codigo: PL03
+Cantidad: 30
+Costo: 12000
+Fecha: 4/10/2023
+
+Bodega: Laminas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: plywood 5.5mm 1.22x2.44mtrs
+Codigo: PL40
+Cantidad: 40
+Costo: 12200
+Fecha: 4/10/2023
+
+Bodega: Laminas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: plywood 12mm 1.22x2.44
+Codigo: PL40
+Cantidad: 40
+Costo: 30000
+Fecha: 4/10/2023
+
+Bodega: Laminas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Plywood
+Codigo: 11
+Cantidad: 1
+Costo: 11
+Fecha: 4/10/2023
+
+Bodega: 
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: plywood 12mm 1.22x2.44
+Codigo: PL30
+Cantidad: 30
+Costo: 12000
+Fecha: 4/10/2023
+
+Bodega: Laminas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Pl
+Codigo: 1
+Cantidad: 1
+Costo: 1
+Fecha: 4/10/2023
+
+Bodega: 
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Pino 1x3x3.20
+Codigo: PM30
+Cantidad: 2
+Costo: 3000
+Fecha: 4/10/2023
+
+Bodega: 
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: pintura
+Codigo: pt50
+Cantidad: 30
+Costo: 20000
+Fecha: 4/10/2023
+
+Bodega: 
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: pino
+Codigo: pt
+Cantidad: 1
+Costo: 3
+Fecha: 4/10/2023
+
+Bodega: maer

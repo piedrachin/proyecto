@@ -1,6 +1,7 @@
 import traceback
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
+from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.QtCore import *
 from UI.uiRegistro import Ui_Dialog
 from Clases.claseArticulo import Articulo
@@ -9,6 +10,7 @@ from Clases.claseBodeg import Bodega
 #from .registro import Articulo
 from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
+
 from Datos.dataBase.basedatos import (ingresar_articulos,seleccionar_articulos,
                                       crear_bodega, obtener_lista_bodegas)
 
@@ -26,6 +28,7 @@ class Registro(QtWidgets.QDialog):
         self.o_registro = None
         self.ob_bodega = None
         self.tabla_articulos = []
+    #    self.Cargar_Combobox(obtener_lista_bodegas())
       #  self.agregar_bodegas_a_cmb(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
@@ -42,25 +45,23 @@ class Registro(QtWidgets.QDialog):
         reg_ex = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$") # esto es para que solo me permita numeros
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
-       # self.ui.tbl_registro_articulos.setColumnWidth(0, 30)
-        #self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         
-        #self.ui.tbl_bodega.setColumnWidth(1,230)
-       # self.modelolista = QtGui.QStandardItemModel() #
-        #self.ui.tbl_registro_articulos.
-       # self.crear_tabla_registro(self.registrar_articulo())
- #   def añadir_a_combobox(self):
-  #      nombre_bodega = self.ui.txt_nombre_bodega_2.text()
-   #     self.ui.cmb_bodega.addItem(nombre_bodega)
+        
+       
+       
+       
     def ancho_de_columnas_en_tablas(self):
-        self.ui.tbl_registro_articulos.setColumnWidth(0, 30)
+        self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         self.ui.tbl_bodega.setColumnWidth(1,230)
-    
-    def agregar_bodegas_a_cmb(self):
-        self.ui.cmb_registro.currentIndex(obtener_lista_bodegas)
+    def Cargar_Combobox(self, data):
         
-        #    self.ui.cmb_registro.setCurrentText(index)
+        self.ui.cmb_registro.currentText()
+    
+     #   self.ui.cmb_registro.setModelColumn(1)      
+        #model = obtener_lista_bodegas()
+        #combo.setModel(model)
+        #combo.setModelColumn(1)
             
     def crear_bodega_en_CMB(self):
         self.nombre_bodega = Bodega()
@@ -69,9 +70,9 @@ class Registro(QtWidgets.QDialog):
         crear_bodega(self.nombre_bodega)
         
         self.ui.txt_nombre_bodega.clear()
-        
-        
-        
+
+
+   
     def registro_art_txt(self):
         descripcion = self.ui.txt_nombre.text()
         codigo = self.ui.txt_codigo.text()
@@ -112,9 +113,10 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.cantidad = str(self.ui.spBox_cantidad.value())
         self.o_registro.costo = str(self.ui.txt_costo.text())
         self.o_registro.fecha = str(self.ui.dateEdit.text())
-      #  self.o_registro.bodega = self.ui.cmb_registro.currentText()
+        self.o_registro.bodega = self.ui.cmb_registro.currentText()
        # BD.registrarArticulo(self.o_registro)
         ingresar_articulos(self.o_registro)
+        #ingresar_articulos(self.o_registro)
         # metodo para veirifcar si deje espacio en blanco
         self.registro_art_txt() # me permite llevar un registro txt de todo
         Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
