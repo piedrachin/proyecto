@@ -1,1 +1,0 @@
------------------DATOS USUARIO-----------------Cedula: 00000000Nombre: xxxxxxxGenero: HombreSector: Publico-----------------DATOS CREDITO-----------------Credito: Vivienda Monto Formalizacion: 1000000Tasa: 10%Cantidad de plasos: 12

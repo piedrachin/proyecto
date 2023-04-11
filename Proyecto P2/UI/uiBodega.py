@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Bodega(object):
     def setupUi(self, Bodega):
         Bodega.setObjectName("Bodega")
-        Bodega.resize(613, 347)
+        Bodega.resize(638, 383)
         self.label = QtWidgets.QLabel(parent=Bodega)
         self.label.setGeometry(QtCore.QRect(10, 10, 91, 16))
         self.label.setObjectName("label")
@@ -38,6 +38,9 @@ class Ui_Bodega(object):
         self.btn_eliminar_bodega = QtWidgets.QPushButton(parent=Bodega)
         self.btn_eliminar_bodega.setGeometry(QtCore.QRect(110, 90, 75, 23))
         self.btn_eliminar_bodega.setObjectName("btn_eliminar_bodega")
+        self.btn_actualizar = QtWidgets.QPushButton(parent=Bodega)
+        self.btn_actualizar.setGeometry(QtCore.QRect(200, 90, 75, 23))
+        self.btn_actualizar.setObjectName("btn_actualizar")
 
         self.retranslateUi(Bodega)
         QtCore.QMetaObject.connectSlotsByName(Bodega)
@@ -56,3 +59,4 @@ class Ui_Bodega(object):
         item = self.tbl_bodegas_cr.horizontalHeaderItem(3)
         item.setText(_translate("Bodega", "Codigo"))
         self.btn_eliminar_bodega.setText(_translate("Bodega", "Eliminar"))
+        self.btn_actualizar.setText(_translate("Bodega", "Actualizar"))
