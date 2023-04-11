@@ -5,10 +5,13 @@ from PyQt6.QtCore import *
 from UI.uiRegistro import Ui_Dialog
 from Clases.claseArticulo import Articulo
 from Clases.claseDistribuidor import Distribuidor
+from Clases.claseBodeg import Bodega
 #from .registro import Articulo
 from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
-from Datos.dataBase.basedatos import ingresar_articulos,seleccionar_articulos
+from Datos.dataBase.basedatos import (ingresar_articulos,seleccionar_articulos,
+                                      crear_bodega, obtener_lista_bodegas)
+
 import datetime
 
 
@@ -21,7 +24,9 @@ class Registro(QtWidgets.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.o_registro = None
+        self.ob_bodega = None
         self.tabla_articulos = []
+      #  self.agregar_bodegas_a_cmb(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
         self.llenar_tabla_con_bd(seleccionar_articulos())
@@ -51,10 +56,18 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_registro_articulos.setColumnWidth(0, 30)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         self.ui.tbl_bodega.setColumnWidth(1,230)
+    
+    def agregar_bodegas_a_cmb(self):
+        self.ui.cmb_registro.currentIndex(obtener_lista_bodegas)
+        
+        #    self.ui.cmb_registro.setCurrentText(index)
+            
     def crear_bodega_en_CMB(self):
-        nombre_bodega = self.ui.txt_nombre_bodega.text()
-        self.ui.cmb_registro.addItem(nombre_bodega)
-      #  Persistencia.crear_bodega(nombre_bodega)
+        self.nombre_bodega = Bodega()
+        self.nombre_bodega.nombre = self.ui.txt_nombre_bodega.text()
+        self.ui.cmb_registro.addItem(self.nombre_bodega.nombre)
+        crear_bodega(self.nombre_bodega)
+        
         self.ui.txt_nombre_bodega.clear()
         
         
@@ -99,7 +112,7 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.cantidad = str(self.ui.spBox_cantidad.value())
         self.o_registro.costo = str(self.ui.txt_costo.text())
         self.o_registro.fecha = str(self.ui.dateEdit.text())
-        self.o_registro.bodega = self.ui.cmb_registro.currentText()
+      #  self.o_registro.bodega = self.ui.cmb_registro.currentText()
        # BD.registrarArticulo(self.o_registro)
         ingresar_articulos(self.o_registro)
         # metodo para veirifcar si deje espacio en blanco
