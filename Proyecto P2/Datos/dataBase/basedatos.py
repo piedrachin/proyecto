@@ -20,7 +20,7 @@ def ingresar_articulos(oArticulo):
 
         cursor.execute(sql, valores)
         conn.commit()
-        print("Data inserted")
+        print("Data inserted en tabla inventario")
 
     except pyodbc.Error as e:
         print("Error Conexion")
@@ -49,7 +49,7 @@ def crear_bodega(oBodega):
         cursor = conn.cursor()
         cursor.execute(sql, valores)
         conn.commit()
-        print("Data inserted")
+        print("Data inserted en tabla bodega")
 
     except pyodbc.Error as e:
         print("Error Conexion" + str(e))
@@ -57,13 +57,33 @@ def crear_bodega(oBodega):
 def obtener_lista_bodegas():
     conn = pyodbc.connect(con_string)# para conectarme a mi base 
     print("Conexion A BD")
-    sql = """ SELECT * FROM bodega """
+    sql = (""" SELECT Nombre FROM bodega """)
     try:
         cur = conn.cursor()
         cur.execute(sql)
-        lista_bodegas = cur.fetchall() # con esto me traigo todo lo que esta registrado
-        return lista_bodegas
+        data = cur.fetchall()
+        for category in data:
+          #  data.append(category[0])
+            print(category[0])
+       # lista_bodegas = cur.fetchall() # con esto me traigo todo lo que esta registrado
+       # return lista_bodegas
+        #return data
     
     except pyodbc.Error as e:
         print(" Error al llamar bodega "+ str(e))
-
+def registrar_distribuidor(oDistribuidor):
+    try:
+        conn = pyodbc.connect(con_string)# para conectarme a mi base 
+        print("Conectado a BD")
+        sql = ("""INSERT INTO distribuidor (Distribuidor, Telefono, Cedula, Fecha)
+                 VALUES (?,?,?,?)""")
+        valores = (oDistribuidor.distribuidor, oDistribuidor.telefono, oDistribuidor.cedula,
+                   oDistribuidor.fecha)
+        cursor = conn.cursor()
+        cursor.execute(sql, valores)
+        conn.commit()
+        print("Se inserto dato en tabla Distribuidor")
+        
+    except pyodbc.Error as e:
+        print("Error de Conexion "+ str(e) )
+        

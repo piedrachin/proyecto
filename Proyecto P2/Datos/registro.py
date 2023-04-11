@@ -1,4 +1,7 @@
-import traceback
+import pyodbc
+
+import sys
+from Datos.dataBase.basedatos import con_string
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
 from PyQt6.QtWidgets import QTableWidgetItem
@@ -12,7 +15,7 @@ from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
 
 from Datos.dataBase.basedatos import (ingresar_articulos,seleccionar_articulos,
-                                      crear_bodega, obtener_lista_bodegas)
+                                      crear_bodega)
 
 import datetime
 
@@ -28,8 +31,9 @@ class Registro(QtWidgets.QDialog):
         self.o_registro = None
         self.ob_bodega = None
         self.tabla_articulos = []
-    #    self.Cargar_Combobox(obtener_lista_bodegas())
-      #  self.agregar_bodegas_a_cmb(obtener_lista_bodegas())
+       # self.Cargar_Combobox(obtener_lista_bodegas())
+        self.obtener_lista_bodegas()
+      # self.agregar_bodegas_a_cmb(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
         self.llenar_tabla_con_bd(seleccionar_articulos())
@@ -46,20 +50,28 @@ class Registro(QtWidgets.QDialog):
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
         
-        
-       
-       
-       
+    def obtener_lista_bodegas(self):
+        try:
+            self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
+            print("Conexion A BD")
+            self.cur = self.conn.cursor()
+            self.cur.execute('''SELECT Nombre FROM bodega ''')
+            data = self.cur.fetchall()
+            for category in data:
+               self.ui.cmb_registro.addItem(category[0])
+        except pyodbc.Error as e:
+            print(" Error al llamar bodega "+ str(e))                      
     def ancho_de_columnas_en_tablas(self):
         self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         self.ui.tbl_bodega.setColumnWidth(1,230)
-    def Cargar_Combobox(self, data):
+    def Cargar_Combobox(self,data):
+        self.ui.cmb_registro.addItem(data)
         
-        self.ui.cmb_registro.currentText()
-    
-     #   self.ui.cmb_registro.setModelColumn(1)      
+     #   self.ui.cmb_registro.currentText()
+       # combo = self.ui.cmb_registro      
         #model = obtener_lista_bodegas()
+        
         #combo.setModel(model)
         #combo.setModelColumn(1)
             

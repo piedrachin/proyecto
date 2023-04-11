@@ -79,3 +79,21 @@ Costo: 3
 Fecha: 4/10/2023
 
 Bodega: maer
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Goltex Satinada Gln SUR
+Codigo: GT01
+Cantidad: 16
+Costo: 24000
+Fecha: 4/11/2023
+
+Bodega: Dep Pintura
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Cable Argos #8 x mtr
+Codigo: CE01
+Cantidad: 100
+Costo: 985
+Fecha: 4/11/2023
+
+Bodega: Maderas

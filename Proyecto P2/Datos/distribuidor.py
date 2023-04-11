@@ -1,4 +1,7 @@
+
+
 import sys
+
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import QWidget
 from UI.uiDistribuidor import Ui_Distribuidor
@@ -6,7 +9,7 @@ from PyQt6.QtCore import Qt
 from Clases.claseDistribuidor import *
 import datetime
 from .permanencia import *
-
+from Datos.dataBase.basedatos import registrar_distribuidor
 class DistribuidorVentana(QtWidgets.QWidget):
     
     def __init__(self, parent = None):
@@ -27,13 +30,13 @@ class DistribuidorVentana(QtWidgets.QWidget):
         
         self.ui.tbl_distribuidores.setRowCount(0)
         
-        self.num_fila = self.ui.tbl_distribuidores.rowCount()
+        num_fila = self.ui.tbl_distribuidores.rowCount()
          
         for item in Persistencia.obtener_distribuidor():
             self.ui.tbl_distribuidores.insertRow(num_fila)
-            nombre = QtWidgets.QTableWidgetItem(item.nombre_emp)
-            cedula = QtWidgets.QTableWidgetItem(str(item.ced_juridica_emp))
-            telefono = QtWidgets.QTableWidgetItem(str(item.telefono_emp))
+            nombre = QtWidgets.QTableWidgetItem(item.distribuidor)
+            cedula = QtWidgets.QTableWidgetItem(str(item.cedula))
+            telefono = QtWidgets.QTableWidgetItem(str(item.telefono))
             fecha = QtWidgets.QTableWidgetItem(str(item.fecha))
             
             self.ui.tbl_distribuidores.setItem(num_fila,0,nombre) 
@@ -47,11 +50,11 @@ class DistribuidorVentana(QtWidgets.QWidget):
     
     def crear_distribuidor(self):
         self.ob_distribuidor = Distribuidor() # para usar las variables de mi clase distribuidor
-        self.ob_distribuidor.nombre_emp = self.ui.txt_nombre_emp.text()
-        self.ob_distribuidor.ced_juridica_emp = self.ui.txt_ced_juri_emp.text()
-        self.ob_distribuidor.telefono_emp = self.ui.txt_telefono_emp.text()
-        self.ob_distribuidor.fecha = self.ui.dateEdit.text()
-       
+        self.ob_distribuidor.distribuidor = str(self.ui.txt_nombre_emp.text())
+        self.ob_distribuidor.cedula = str(self.ui.txt_ced_juri_emp.text())
+        self.ob_distribuidor.telefono = str(self.ui.txt_telefono_emp.text())
+        self.ob_distribuidor.fecha = str(self.ui.dateEdit.text())
+        registrar_distribuidor(self.ob_distribuidor)
         # a continuacion agregar esto a una tabla, que me contendra la lista de los distribuidores
         Persistencia.registro_distribuidor(self.ob_distribuidor)
         self.limpiar_entradas()
