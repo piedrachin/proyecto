@@ -50,6 +50,10 @@ class Registro(QtWidgets.QDialog):
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
         
+        
+        
+        # este metodo me permite obtener las bodegas creadas de mi combobox
+        
     def obtener_lista_bodegas(self):
         try:
             self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
@@ -65,15 +69,12 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         self.ui.tbl_bodega.setColumnWidth(1,230)
-    def Cargar_Combobox(self,data):
-        self.ui.cmb_registro.addItem(data)
         
-     #   self.ui.cmb_registro.currentText()
-       # combo = self.ui.cmb_registro      
-        #model = obtener_lista_bodegas()
-        
-        #combo.setModel(model)
-        #combo.setModelColumn(1)
+
+
+
+
+
             
     def crear_bodega_en_CMB(self):
         self.nombre_bodega = Bodega()
@@ -84,7 +85,7 @@ class Registro(QtWidgets.QDialog):
         self.ui.txt_nombre_bodega.clear()
 
 
-   
+
     def registro_art_txt(self):
         descripcion = self.ui.txt_nombre.text()
         codigo = self.ui.txt_codigo.text()
@@ -128,6 +129,7 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.bodega = self.ui.cmb_registro.currentText()
        # BD.registrarArticulo(self.o_registro)
         ingresar_articulos(self.o_registro)
+        self.check_espacios_vacios()
         #ingresar_articulos(self.o_registro)
         # metodo para veirifcar si deje espacio en blanco
         self.registro_art_txt() # me permite llevar un registro txt de todo
@@ -188,35 +190,22 @@ class Registro(QtWidgets.QDialog):
        self.ui.spBox_cantidad.setValue(0)
       # self.ui.cmb_bodega.clear()
       
+      
+      # este meto me persuadira si existe algun espacio vacio
+      
     def check_espacios_vacios(self):
         msg = QMessageBox() # 
-        codido =  self.ui.txt_codigo.text()
+        codigo =  self.ui.txt_codigo.text()
         costo =  self.ui.txt_costo.text()
         nombre = self.ui.txt_nombre.text()
         cantidad = self.ui.spBox_cantidad.value()
         
-        if codido == " ":
-            msg = QtWidgets.QMessageBox(text="Degaste el espacio Codigo vacio.")
-            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-            msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-            msg.exec()
-        if costo == " ":
-            msg = QtWidgets.QMessageBox(text="Dejaste el espacio Costo vacio.")
-            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-            msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-            msg.exec()
-        if nombre == " ":
-            msg = QtWidgets.QMessageBox(text="Dejaste el espacio Descripcion vacio.")
-            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-            msg.setStandardButtons(msg.StandardButton.Ok)
-            msg.exec()
-        if cantidad == " ":
-            msg = QtWidgets.QMessageBox(text="Dejaste el espacio Cantidad Vacio.")
-            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-            msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-            msg.exec()
-        
+        if codigo == '' or costo == '' or nombre == '' or cantidad == '':
             
+            msg = QtWidgets.QMessageBox(text=" Dejaste algun espacio Vacio. ")
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            msg.StandardButton(QtWidgets.QMessageBox.StandardButton.Ok)
+            msg.exec()
         
            
                 

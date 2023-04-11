@@ -97,3 +97,39 @@ Costo: 985
 Fecha: 4/11/2023
 
 Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: a
+Codigo: 
+Cantidad: 1
+Costo: 1
+Fecha: 4/11/2023
+
+Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: aa
+Codigo: 
+Cantidad: 0
+Costo: 
+Fecha: 4/11/2023
+
+Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: q
+Codigo: 
+Cantidad: 0
+Costo: 
+Fecha: 4/11/2023
+
+Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: 2
+Codigo: 
+Cantidad: 0
+Costo: 
+Fecha: 4/11/2023
+
+Bodega: Maderas
