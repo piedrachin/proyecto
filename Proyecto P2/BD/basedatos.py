@@ -58,9 +58,33 @@ def buscarCliente(identificacion) -> dict:
     rs = cursorDB.fetchone()
     return rs
 
+def eliminarArticulo(id):
+    conn = pyodbc.connect(con_string)# para conectarme a mi base 
+    cur = conn.cursor()
+    sql = ("Delete from inventario where ID ART = %s")                
+    valores = (id,)    
+    cur.execute(sql,valores)
+    conn.commit()
+        
 def eliminarCliente(identificacion):
     cursorDB = miConexion.cursor()
     sentenciaSQL = ("Delete from cuscatlan.clientes Where IdeCliente = %s")                    
     valores = (identificacion,)    
     cursorDB.execute(sentenciaSQL,valores)
     miConexion.commit()
+    
+def seleccionar_articulos():
+    conn = pyodbc.connect(con_string)# para conectarme a mi base 
+    sql = """SELECT * FROM inventario """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        registro_articulos = cur.fetchall() # con esto me traigo todo lo que esta registrado
+        return registro_articulos
+    except pyodbc.Error as e:
+        print(" Error al selecionar articulos "+ str(e))
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
+            

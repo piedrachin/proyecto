@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>613</width>
-    <height>347</height>
+    <width>638</width>
+    <height>383</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,6 +57,39 @@
      <width>571</width>
      <height>191</height>
     </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Bodega</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Articulo</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Cantidad</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Codigo</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btn_eliminar_bodega">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>90</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Eliminar</string>
    </property>
   </widget>
  </widget>

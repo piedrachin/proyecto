@@ -40,6 +40,29 @@ def seleccionar_articulos():
             cur.close()
             conn.close()
             
+            
+def eliminarArticulo(id):
+    conn = pyodbc.connect(con_string)# para conectarme a mi base 
+    print("Se conecto a BD")
+    
+    sql = (f"Delete from inventario where id_art = {id}")  
+    try:              
+        
+        
+        cur = conn.cursor() 
+        cur.execute(sql)
+        conn.commit()
+        print("Articulo eliminado")
+        return True
+    except pyodbc.Error as e:
+        print("Error al eliminar: "+ str(e))
+    
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
+    
+    
 def crear_bodega(oBodega):
     try:
         conn = pyodbc.connect(con_string)
@@ -61,16 +84,37 @@ def obtener_lista_bodegas():
     try:
         cur = conn.cursor()
         cur.execute(sql)
-        data = cur.fetchall()
-        for category in data:
+       # data = cur.fetchall()
+       # for category in data:
           #  data.append(category[0])
-            print(category[0])
-       # lista_bodegas = cur.fetchall() # con esto me traigo todo lo que esta registrado
-       # return lista_bodegas
+         #   print(category[0])
+        lista_bodegas = cur.fetchall() # con esto me traigo todo lo que esta registrado
+        return lista_bodegas
         #return data
-    
     except pyodbc.Error as e:
         print(" Error al llamar bodega "+ str(e))
+        
+def eliminar_bodega(id):
+    conn = pyodbc.connect(con_string)# para conectarme a mi base 
+    print("Se conecto a BD ")
+    sql = (f"Delete from inventario where id_bodega = {id}")
+  #  sql = (f"Delete from bodega Where id_bod = {id}")  
+    try:              
+        cur = conn.cursor() 
+        cur.execute(sql)
+        conn.commit()
+        print("Bodega eliminada")
+        return True
+    except pyodbc.Error as e:
+        print("Error al eliminar: "+ str(e))
+    
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
+    
+    
+        
 def registrar_distribuidor(oDistribuidor):
     try:
         conn = pyodbc.connect(con_string)# para conectarme a mi base 

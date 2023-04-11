@@ -133,3 +133,39 @@ Costo:
 Fecha: 4/11/2023
 
 Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: madera 1x3x4vars laurel
+Codigo: ML30
+Cantidad: 50
+Costo: 3300
+Fecha: 4/11/2023
+
+Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Pino 1x3x3.20mtrs 
+Codigo: MP30
+Cantidad: 50
+Costo: 3000
+Fecha: 4/11/2023
+
+Bodega: Maderas
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Mortero Impercrete Max 20k
+Codigo: MR03
+Cantidad: 50
+Costo: 3300
+Fecha: 4/11/2023
+
+Bodega: Morteros
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Costo: 
+Fecha: 4/11/2023
+
+Bodega: Morteros

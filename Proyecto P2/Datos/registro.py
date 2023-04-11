@@ -9,13 +9,13 @@ from PyQt6.QtCore import *
 from UI.uiRegistro import Ui_Dialog
 from Clases.claseArticulo import Articulo
 from Clases.claseDistribuidor import Distribuidor
-from Clases.claseBodeg import Bodega
+from Clases.claseBodega import Bodega
 #from .registro import Articulo
 from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
 
 from Datos.dataBase.basedatos import (ingresar_articulos,seleccionar_articulos,
-                                      crear_bodega)
+                                      eliminarArticulo, obtener_lista_bodegas)
 
 import datetime
 
@@ -32,18 +32,20 @@ class Registro(QtWidgets.QDialog):
         self.ob_bodega = None
         self.tabla_articulos = []
        # self.Cargar_Combobox(obtener_lista_bodegas())
-        self.obtener_lista_bodegas()
+        self.obtener_lista_bodegas_a_cmb()
       # self.agregar_bodegas_a_cmb(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
+     #   self.limpiador_de_combobox_bodegas()
         self.llenar_tabla_con_bd(seleccionar_articulos())
        # self.crear_tabla_registro(seleccionar_articulos())
         self.ui.btn_refrescar_bodega.clicked.connect(self.crear_tabla_bodegas)
-        self.ui.btn_imprimir_txt.clicked.connect(self.crear_bodega_en_CMB)
+     #   self.ui.btn_imprimir_txt.clicked.connect(self.crear_bodega_en_CMB)
         self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
         self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
         self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
-        self.ui.btn_refrescar.clicked.connect(self.crear_tabla_registro)
+        self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
+        self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
         
         
         reg_ex = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$") # esto es para que solo me permita numeros
@@ -53,8 +55,12 @@ class Registro(QtWidgets.QDialog):
         
         
         # este metodo me permite obtener las bodegas creadas de mi combobox
+     
+    
+    def limpiador_de_combobox_bodegas(self):
+        self.ui.cmb_registro.clear()
         
-    def obtener_lista_bodegas(self):
+    def obtener_lista_bodegas_a_cmb(self):
         try:
             self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
             print("Conexion A BD")
@@ -69,23 +75,24 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         self.ui.tbl_bodega.setColumnWidth(1,230)
-        
-
-
-
-
-
             
-    def crear_bodega_en_CMB(self):
-        self.nombre_bodega = Bodega()
-        self.nombre_bodega.nombre = self.ui.txt_nombre_bodega.text()
-        self.ui.cmb_registro.addItem(self.nombre_bodega.nombre)
-        crear_bodega(self.nombre_bodega)
+    #def crear_bodega_en_CMB(self):
+        #self.nombre_bodega = Bodega()
+        #self.nombre_bodega.nombre = self.ui.txt_nombre_bodega.text()
+        #self.ui.cmb_registro.addItem(self.nombre_bodega.nombre)
+       # crear_bodega(self.nombre_bodega)
         
-        self.ui.txt_nombre_bodega.clear()
-
-
-
+        #self.ui.txt_nombre_bodega.clear()
+    def eliminar_articulos(self):
+        selec_fila = self.ui.tbl_registro_articulos.selectedItems()
+        
+        if selec_fila:
+            articulo_id = int(selec_fila[0].text())
+            fila = selec_fila[0].row()
+            if eliminarArticulo(articulo_id):
+               self.ui.tbl_registro_articulos.removeRow(fila)
+          # self.ui.tbl_registro_articulos.removeRow(fila)
+          
     def registro_art_txt(self):
         descripcion = self.ui.txt_nombre.text()
         codigo = self.ui.txt_codigo.text()
@@ -115,8 +122,8 @@ class Registro(QtWidgets.QDialog):
         self.ventana_distribuidor = DistribuidorVentana(self)
         self.ventana_distribuidor.show()# con este metodo muestro mi ventana
     def ventana_crear_bodega(self):
-        from .bodega import Bodega # importo mi clase de bodega
-        self.ventana_bodega = Bodega(self)
+        from .bodega import VentanaBodega # importo mi clase de bodega
+        self.ventana_bodega = VentanaBodega(self)
         self.ventana_bodega.show()
         
     def registrar_articulo(self):
@@ -139,6 +146,7 @@ class Registro(QtWidgets.QDialog):
     def crear_tabla_bodegas(self):# esta tabla me permitira obtener la bodega y su respectivo material y cantidad
         self.ui.tbl_bodega.setRowCount(0)
         num_fila = self.ui.tbl_bodega.rowCount()
+        
         for item in Persistencia.obtener_registro():
             self.ui.tbl_bodega.insertRow(num_fila)
             bodega = QtWidgets.QTableWidgetItem(str(item.bodega))
@@ -148,18 +156,16 @@ class Registro(QtWidgets.QDialog):
             self.ui.tbl_bodega.setItem(num_fila,0,bodega)
             self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
             self.ui.tbl_bodega.setItem(num_fila,2,cantidad)
-    def llenar_tabla_con_bd(self, data):
+            
+    def llenar_tabla_con_bd(self, data):        
+        self.obtener_lista_bodegas_a_cmb
+        self.obtener_lista_bodegas_a_cmb()# esta importacion me genera un duplicado en mi combobox
         self.ui.tbl_registro_articulos.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
                 self.ui.tbl_registro_articulos.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
             
     def crear_tabla_registro(self, data):# agregar data       
-       # self.ui.tbl_registro_articulos.setRowCount(len(data))
-      #  for (index_row, row) in enumerate(data):
-     #       for(index_cell, cell) in enumerate(row):
-    #            self.ui.tbl_registro_articulos.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
-              
         self.ui.tbl_registro_articulos.setRowCount(0)
         
         num_fila = self.ui.tbl_registro_articulos.rowCount()
