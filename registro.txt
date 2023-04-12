@@ -169,3 +169,111 @@ Costo:
 Fecha: 4/11/2023
 
 Bodega: Morteros
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Aceite clover gln
+Codigo: AT30
+Cantidad: 30
+Costo: 4000
+Fecha: 4/11/2023
+
+Bodega: Aceites
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Costo: 
+Fecha: 4/11/2023
+
+Bodega: 
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Costo: 
+Fecha: 4/11/2023
+
+Bodega: 
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Harina de soya 1k
+Codigo: HR30
+Cantidad: 20
+Costo: 2000
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: tubo 1x2x1.50 HN
+Codigo: Th30
+Cantidad: 2
+Costo: 140000
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: coca cola 1 ltr
+Codigo: CC30
+Cantidad: 20
+Costo: 1000
+Fecha: 4/11/2023
+
+Bodega: Enlatado
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: arroz luisiana 2k
+Codigo: AR40
+Cantidad: 2
+Costo: 3000
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: Pino 2x2x3.20mtr
+Codigo: MP40
+Cantidad: 40
+Costo: 3000
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: pno
+Codigo: 11
+Cantidad: 1
+Costo: 11
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: pp
+Codigo: 33
+Cantidad: 3
+Costo: 33
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: 11
+Codigo: 11
+Cantidad: 1
+Costo: 11
+Fecha: 4/11/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: cocacola 1ltr
+Codigo: CC01
+Cantidad: 3
+Costo: 400
+Fecha: 4/11/2023
+
+Bodega: Enlatado

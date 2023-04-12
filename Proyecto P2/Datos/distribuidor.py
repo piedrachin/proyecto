@@ -3,13 +3,13 @@
 import sys
 
 from PyQt6 import QtCore,QtWidgets,QtGui
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import *
 from UI.uiDistribuidor import Ui_Distribuidor
 from PyQt6.QtCore import Qt
 from Clases.claseDistribuidor import *
 import datetime
 from .permanencia import *
-from Datos.dataBase.basedatos import registrar_distribuidor
+from Datos.dataBase.basedatos import registrar_distribuidor,obtener_lista_distribuidor
 class DistribuidorVentana(QtWidgets.QWidget):
     
     def __init__(self, parent = None):
@@ -18,13 +18,21 @@ class DistribuidorVentana(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.WindowType.Window)
         self.inicializar_controladores()
+        self.llenar_tabla_con_BD(obtener_lista_distribuidor())
         self.ob_distribuidor = None
         self.ui.btn_crear_dist.clicked.connect(self.crear_distribuidor)
-        self.ui.btn_refrescar.clicked.connect(self.tabla_distribuidores)
+        self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_BD(obtener_lista_distribuidor()))
+       # self.ui.tbl_distribuidores.setColumnWidth(0,0)
         
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
     
+    def llenar_tabla_con_BD(self,data):
+        self.ui.tbl_distribuidores.setRowCount(len(data))
+        for (index_row, row) in enumerate(data):
+            for(index_cell, cell) in enumerate(row):
+                self.ui.tbl_distribuidores.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
+            
     
     def tabla_distribuidores(self):
         
@@ -34,14 +42,14 @@ class DistribuidorVentana(QtWidgets.QWidget):
          
         for item in Persistencia.obtener_distribuidor():
             self.ui.tbl_distribuidores.insertRow(num_fila)
-            nombre = QtWidgets.QTableWidgetItem(item.distribuidor)
+            distribuidor = QtWidgets.QTableWidgetItem(item.distribuidor)
             cedula = QtWidgets.QTableWidgetItem(str(item.cedula))
             telefono = QtWidgets.QTableWidgetItem(str(item.telefono))
             fecha = QtWidgets.QTableWidgetItem(str(item.fecha))
             
-            self.ui.tbl_distribuidores.setItem(num_fila,0,nombre) 
-            self.ui.tbl_distribuidores.setItem(num_fila,1,cedula)
-            self.ui.tbl_distribuidores.setItem(num_fila,2,telefono)
+            self.ui.tbl_distribuidores.setItem(num_fila,0,distribuidor) 
+            self.ui.tbl_distribuidores.setItem(num_fila,1,telefono)
+            self.ui.tbl_distribuidores.setItem(num_fila,2,cedula)
             self.ui.tbl_distribuidores.setItem(num_fila,3,fecha)
             
             num_fila +=1

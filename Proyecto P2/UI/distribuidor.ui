@@ -106,17 +106,17 @@
    </property>
    <column>
     <property name="text">
-     <string>Nombre</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Cedula Juridica</string>
+     <string>Distribuidor</string>
     </property>
    </column>
    <column>
     <property name="text">
      <string>Telefono</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Cedula Juridica</string>
     </property>
    </column>
    <column>

@@ -15,7 +15,8 @@ from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
 
 from Datos.dataBase.basedatos import (ingresar_articulos,seleccionar_articulos,
-                                      eliminarArticulo, obtener_lista_bodegas)
+                                      eliminarArticulo, obtener_lista_bodegas,
+                                      crear_bodega, eliminar_bodega)
 
 import datetime
 
@@ -37,17 +38,18 @@ class Registro(QtWidgets.QDialog):
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
      #   self.limpiador_de_combobox_bodegas()
+      #  self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas())
         self.llenar_tabla_con_bd(seleccionar_articulos())
        # self.crear_tabla_registro(seleccionar_articulos())
         self.ui.btn_refrescar_bodega.clicked.connect(self.crear_tabla_bodegas)
-     #   self.ui.btn_imprimir_txt.clicked.connect(self.crear_bodega_en_CMB)
+        self.ui.btn_crear_bdg.clicked.connect(self.crear_bodega_en_CMB)
         self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
         self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
         self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
         self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
         self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
-        
-        
+        self.ui.btn_refrescar_bodega.clicked.connect(lambda: self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
+        self.ui.btn_elimar_tabla_bod.clicked.connect(self.eliminar_de_tabla_bodega)
         reg_ex = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$") # esto es para que solo me permita numeros
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
@@ -76,11 +78,13 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
         self.ui.tbl_bodega.setColumnWidth(1,230)
             
-    #def crear_bodega_en_CMB(self):
-        #self.nombre_bodega = Bodega()
-        #self.nombre_bodega.nombre = self.ui.txt_nombre_bodega.text()
-        #self.ui.cmb_registro.addItem(self.nombre_bodega.nombre)
-       # crear_bodega(self.nombre_bodega)
+    def crear_bodega_en_CMB(self):
+        self.nombre_bodega = Bodega()
+        self.nombre_bodega.nombre = self.ui.txt_nombre_bodega.text()
+        self.ui.cmb_registro.addItem(self.nombre_bodega.nombre)
+        crear_bodega(self.nombre_bodega)
+        Persistencia.crear_bodega(self.nombre_bodega)
+        self.ui.txt_nombre_bodega.clear()
         
         #self.ui.txt_nombre_bodega.clear()
     def eliminar_articulos(self):
@@ -127,6 +131,7 @@ class Registro(QtWidgets.QDialog):
         self.ventana_bodega.show()
         
     def registrar_articulo(self):
+    
         self.o_registro = Articulo()#       
         self.o_registro.descripcion = self.ui.txt_nombre.text()
         self.o_registro.codigo = str(self.ui.txt_codigo.text())
@@ -142,7 +147,22 @@ class Registro(QtWidgets.QDialog):
         self.registro_art_txt() # me permite llevar un registro txt de todo
         Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
         self.limpiar_entrada()
-     
+        
+    def eliminar_de_tabla_bodega(self):
+        selec_fila = self.ui.tbl_bodega.selectedItems()
+        
+        if selec_fila:
+            articulo_id = (selec_fila[0].text())
+            fila = selec_fila[0].row()
+            if eliminar_bodega(articulo_id):
+               self.ui.tbl_bodega.removeRow(fila)
+               
+    def llenar_tabla_bodegas_en_Bd(self, data):
+        self.ui.tbl_bodega.setRowCount(len(data))
+        for (index_row, row) in enumerate(data):
+            for(index_cell, cell) in enumerate(row):
+                self.ui.tbl_bodega.setItem(index_row, index_cell,QTableWidgetItem(str(cell))) 
+                
     def crear_tabla_bodegas(self):# esta tabla me permitira obtener la bodega y su respectivo material y cantidad
         self.ui.tbl_bodega.setRowCount(0)
         num_fila = self.ui.tbl_bodega.rowCount()
@@ -151,15 +171,17 @@ class Registro(QtWidgets.QDialog):
             self.ui.tbl_bodega.insertRow(num_fila)
             bodega = QtWidgets.QTableWidgetItem(str(item.bodega))
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
+            codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             
             self.ui.tbl_bodega.setItem(num_fila,0,bodega)
             self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
-            self.ui.tbl_bodega.setItem(num_fila,2,cantidad)
+            self.ui.tbl_bodega.setItem(num_fila,2,codigo)
+            self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
             
     def llenar_tabla_con_bd(self, data):        
-        self.obtener_lista_bodegas_a_cmb()
-       # self.obtener_lista_bodegas_a_cmb()# esta importacion me genera un duplicado en mi combobox
+       # self.obtener_lista_bodegas_a_cmb()
+        #self.obtener_lista_bodegas_a_cmb()# esta importacion me genera un duplicado en mi combobox
         self.ui.tbl_registro_articulos.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):

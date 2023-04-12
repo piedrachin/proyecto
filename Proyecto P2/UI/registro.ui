@@ -16,34 +16,34 @@
   <widget class="QPushButton" name="btn_agregar">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>190</y>
+     <x>10</x>
+     <y>170</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Agregar</string>
+    <string>Crear</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_refrescar">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>530</y>
+     <x>650</x>
+     <y>180</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Refrescar</string>
+    <string>Actualizar</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_crear_bodega">
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>120</y>
+     <y>530</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -55,10 +55,10 @@
   <widget class="QTableWidget" name="tbl_registro_articulos">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>280</y>
-     <width>721</width>
-     <height>241</height>
+     <x>230</x>
+     <y>10</y>
+     <width>511</width>
+     <height>161</height>
     </rect>
    </property>
    <column>
@@ -101,7 +101,7 @@
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>90</y>
+     <y>470</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -114,7 +114,7 @@
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>150</y>
+     <y>500</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -123,34 +123,37 @@
     <string>Registro</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_imprimir_txt">
+  <widget class="QPushButton" name="btn_refrescar_bodega">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>40</y>
+     <x>340</x>
+     <y>430</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Crear</string>
+    <string>Actualizar</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="txt_nombre_bodega">
+  <widget class="QPushButton" name="btn_eliminar_tabla">
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>10</y>
-     <width>131</width>
-     <height>20</height>
+     <y>180</y>
+     <width>75</width>
+     <height>23</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>Eliminar</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>10</y>
+     <x>10</x>
+     <y>430</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -159,13 +162,36 @@
     <string>Nombre Bodega</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="txt_nombre_bodega">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>430</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_crear_bdg">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>430</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Crear</string>
+   </property>
+  </widget>
   <widget class="QTableWidget" name="tbl_bodega">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>201</y>
-     <width>461</width>
-     <height>61</height>
+     <x>10</x>
+     <y>460</y>
+     <width>641</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -183,6 +209,9 @@
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: rgb(255, 255, 127);</string>
+   </property>
    <attribute name="horizontalHeaderMinimumSectionSize">
     <number>60</number>
    </attribute>
@@ -198,172 +227,33 @@
    </column>
    <column>
     <property name="text">
+     <string>Codigo</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>Cantidad</string>
     </property>
    </column>
   </widget>
-  <widget class="QPushButton" name="btn_refrescar_bodega">
+  <widget class="QPushButton" name="btn_editar_articull">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>220</y>
+     <x>490</x>
+     <y>180</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Refrescar</string>
+    <string>Editar</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QPushButton" name="btn_elimar_tabla_bod">
    <property name="geometry">
     <rect>
-     <x>11</x>
-     <y>37</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Codigo</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txt_codigo">
-   <property name="geometry">
-    <rect>
-     <x>62</x>
-     <y>37</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txt_nombre">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>10</y>
-     <width>261</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>61</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-color: rgb(0, 170, 255);</string>
-   </property>
-   <property name="text">
-    <string>Descripcion</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="cmb_registro">
-   <property name="geometry">
-    <rect>
-     <x>62</x>
-     <y>89</y>
-     <width>111</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>89</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Bodega</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>115</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cantidad</string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spBox_cantidad">
-   <property name="geometry">
-    <rect>
-     <x>62</x>
-     <y>115</y>
-     <width>49</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="maximum">
-    <number>2000</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>141</y>
-     <width>29</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Fecha</string>
-   </property>
-  </widget>
-  <widget class="QDateEdit" name="dateEdit">
-   <property name="geometry">
-    <rect>
-     <x>62</x>
-     <y>141</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txt_costo">
-   <property name="geometry">
-    <rect>
-     <x>62</x>
-     <y>63</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>63</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Costo</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_eliminar_tabla">
-   <property name="geometry">
-    <rect>
-     <x>590</x>
-     <y>530</y>
+     <x>420</x>
+     <y>430</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -371,6 +261,85 @@
    <property name="text">
     <string>Eliminar</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>195</width>
+     <height>152</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(0, 170, 255);</string>
+      </property>
+      <property name="text">
+       <string>Descripcion</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLineEdit" name="txt_nombre"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Codigo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="2">
+     <widget class="QLineEdit" name="txt_codigo"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Costo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="2">
+     <widget class="QLineEdit" name="txt_costo"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Bodega</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" colspan="2">
+     <widget class="QComboBox" name="cmb_registro"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Cantidad</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1" colspan="2">
+     <widget class="QSpinBox" name="spBox_cantidad">
+      <property name="maximum">
+       <number>2000</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Fecha</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1" colspan="2">
+     <widget class="QDateEdit" name="dateEdit"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

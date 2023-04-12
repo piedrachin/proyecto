@@ -8,7 +8,7 @@ from PyQt6.QtCore import Qt
 from Clases.claseBodega import *
 from .permanencia import *
 from Datos.dataBase.basedatos import con_string
-from Datos.dataBase.basedatos import obtener_lista_bodegas, eliminar_bodega, crear_bodega
+#from Datos.dataBase.basedatos import obtener_lista_bodegas, eliminar_bodega, crear_bodega
 
 class VentanaBodega(QtWidgets.QWidget):
     
@@ -23,8 +23,8 @@ class VentanaBodega(QtWidgets.QWidget):
       #  self.crear_tabla_bodega()
         self.ob_bodega = None
         self.ui.btn_crear_bodega.clicked.connect(self.crear_bodega_en_cmb) # al darle click me creara la bodega en mi combobox
-      #  self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas)
-        self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas_creadas)
+        self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas)
+     #   self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas_creadas)
         self.ui.btn_actualizar.clicked.connect(lambda:self.crear_tabla_bodegas(obtener_lista_bodegas()) )
     def eliminar_bodegas_creadas(self):
         selec_fila = self.ui.tbl_bodegas_cr.selectedItems()
