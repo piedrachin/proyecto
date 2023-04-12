@@ -277,3 +277,48 @@ Costo: 400
 Fecha: 4/11/2023
 
 Bodega: Enlatado
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: cococo
+Codigo: ccpp
+Cantidad: 2
+Costo: 4000
+Fecha: 4/12/2023
+
+Bodega: Plastico
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: coco
+Codigo: pp40
+Cantidad: 40
+Costo: 30000
+Fecha: 4/12/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: ss
+Codigo: ss
+Cantidad: 3
+Costo: 33
+Fecha: 4/12/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: ww
+Codigo: ww
+Cantidad: 1
+Costo: 11
+Fecha: 4/12/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: gggg
+Codigo: jjjjj
+Cantidad: 888
+Costo: 88888
+Fecha: 4/12/2023
+
+Bodega: Plastico

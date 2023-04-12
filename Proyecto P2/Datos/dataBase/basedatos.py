@@ -145,19 +145,3 @@ def obtener_lista_distribuidor():
         return lista_dist
     except pyodbc.Error as e:
         print("Error de Conexion "+ str(e) )   
-        
-def unir_tablas_dist_pedido():
-    conn = pyodbc.connect(con_string)# para conectarme a mi base 
-    print("Conexion A BD")
-    sql = (""" SELECT distribuidor.id_dist, distribuidor.Distribuidor, articulo_por_bodega.id_dist, 
-           articulo_por_bodega.Pedido FROM distribuidor INNER JOIN articulo_por_bodega 
-           ON  distribuidor.id_dist = articulo_por_bodega.id_dist""")
-    
-    try:
-        cur = conn.cursor()
-        cur.execute(sql)
-
-        lista_dist = cur.fetchall() # con esto me traigo todo lo que esta registrado
-        return lista_dist
-    except pyodbc.Error as e:
-        print("Error de Conexion "+ str(e) ) 
