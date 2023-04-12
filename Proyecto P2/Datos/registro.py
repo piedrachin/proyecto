@@ -158,8 +158,8 @@ class Registro(QtWidgets.QDialog):
             self.ui.tbl_bodega.setItem(num_fila,2,cantidad)
             
     def llenar_tabla_con_bd(self, data):        
-        self.obtener_lista_bodegas_a_cmb
-        self.obtener_lista_bodegas_a_cmb()# esta importacion me genera un duplicado en mi combobox
+        self.obtener_lista_bodegas_a_cmb()
+       # self.obtener_lista_bodegas_a_cmb()# esta importacion me genera un duplicado en mi combobox
         self.ui.tbl_registro_articulos.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):

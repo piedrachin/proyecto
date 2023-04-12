@@ -18,13 +18,14 @@ class VentanaBodega(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.WindowType.Window) # esto me permite que mi nueva ventana pueda ser manipulada,
         # sobre mi ventana padre.
-        self.crear_tabla_bodegas(obtener_lista_bodegas())
+      #  self.crear_tabla_bodegas(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
       #  self.crear_tabla_bodega()
         self.ob_bodega = None
         self.ui.btn_crear_bodega.clicked.connect(self.crear_bodega_en_cmb) # al darle click me creara la bodega en mi combobox
       #  self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas)
         self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas_creadas)
+        self.ui.btn_actualizar.clicked.connect(lambda:self.crear_tabla_bodegas(obtener_lista_bodegas()) )
     def eliminar_bodegas_creadas(self):
         selec_fila = self.ui.tbl_bodegas_cr.selectedItems()
         
@@ -33,27 +34,12 @@ class VentanaBodega(QtWidgets.QWidget):
             fila = selec_fila[0].row()
             if eliminar_bodega(articulo_id):
                self.ui.tbl_bodegas_cr.removeRow(fila)
-    def seleccionar_articulos_en_bodega():
-        
-        conn = pyodbc.connect(con_string)# para conectarme a mi base 
-        sql = """SELECT Descripcion, Codigo, Cantidad FROM inventario """
-        try:
-            cur = conn.cursor()
-            cur.execute(sql)
-            registro_articulos = cur.fetchall() # con esto me traigo todo lo que esta registrado
-            return registro_articulos
-        except pyodbc.Error as e:
-                print(" Error al selecionar articulos "+ str(e))
-        finally:
-            if conn:
-                cur.close()
-                conn.close()    
         
     def ancho_de_columnas_en_tablas(self):
       #  self.ui.tbl_bodegas_cr.setColumnWidth(0, 0)
         self.ui.tbl_bodegas_cr.setColumnWidth(0, 100)
         self.ui.tbl_bodegas_cr.setColumnWidth(1,230)
-    
+     # este metodo me crea las bodegas y las inserta en ACCESS
     def crear_bodega_en_cmb(self):
         self.ob_bodega = Bodega()
         self.ob_bodega.nombre = self.ui.txt_nombre_bodega.text()
@@ -63,6 +49,7 @@ class VentanaBodega(QtWidgets.QWidget):
         self.ui.txt_nombre_bodega.clear()
         
     def crear_tabla_bodegas(self, data):
+        self.crear_bodega_en_cmb()
         self.ui.tbl_bodegas_cr.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
