@@ -32,24 +32,13 @@ class Registro(QtWidgets.QDialog):
         self.o_registro = None
         self.ob_bodega = None
         self.tabla_articulos = []
-       # self.Cargar_Combobox(obtener_lista_bodegas())
+
         self.obtener_lista_bodegas_a_cmb()
-      # self.agregar_bodegas_a_cmb(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
-     #   self.limpiador_de_combobox_bodegas()
-      #  self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas())
+        self.iniciar_todos_los_botones_de_mi_vent_principal()
         self.llenar_tabla_con_bd(seleccionar_articulos())
-       # self.crear_tabla_registro(seleccionar_articulos())
-        self.ui.btn_refrescar_bodega.clicked.connect(self.crear_tabla_bodegas)
-        self.ui.btn_crear_bdg.clicked.connect(self.crear_bodega_en_CMB)
-        self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
-        self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
-        self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
-        self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
-        self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
-        self.ui.btn_refrescar_bodega.clicked.connect(lambda: self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
-        self.ui.btn_elimar_tabla_bod.clicked.connect(self.eliminar_de_tabla_bodega)
+      
         reg_ex = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$") # esto es para que solo me permita numeros
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
@@ -59,7 +48,17 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_bodega.setColumnWidth(3,0)
         
         # este metodo me permite obtener las bodegas creadas de mi combobox
-     
+    def iniciar_todos_los_botones_de_mi_vent_principal(self):
+        self.ui.btn_vent_pedido.clicked.connect(self.ventana_control_pedidos)
+        self.ui.btn_refrescar_bodega.clicked.connect(self.crear_tabla_bodegas)
+        self.ui.btn_crear_bdg.clicked.connect(self.crear_bodega_en_CMB)
+        self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
+        self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
+        self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
+      #  self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
+        self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
+        self.ui.btn_refrescar_bodega.clicked.connect(lambda: self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
+        self.ui.btn_elimar_tabla_bod.clicked.connect(self.eliminar_de_tabla_bodega)
     
     def limpiador_de_combobox_bodegas(self):
         self.ui.cmb_registro.clear()
@@ -122,16 +121,27 @@ class Registro(QtWidgets.QDialog):
  
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
+   
+   # este metodo me permite ir a la ventana pedidos
+    def ventana_control_pedidos(self):
+        from .pedido import VentanaPedido
+        self.ventana_pedido = VentanaPedido()
+        self.ventana_pedido.show()
+        # este metodo me permite ir a la ventana del distribuidor
     
     def ventana_perfil_distribuidor(self):
         from .distribuidor import DistribuidorVentana
         self.ventana_distribuidor = DistribuidorVentana(self)
         self.ventana_distribuidor.show()# con este metodo muestro mi ventana
+    
+     # este metodo me permite ir a la ventana de crear bodega
     def ventana_crear_bodega(self):
         from .bodega import VentanaBodega # importo mi clase de bodega
         self.ventana_bodega = VentanaBodega(self)
         self.ventana_bodega.show()
-        
+      
+      
+      # este metodo me permite registrar o bien crear un articulo, que se vera en mi tabla    
     def registrar_articulo(self):
     
         self.o_registro = Articulo()#       
@@ -171,7 +181,7 @@ class Registro(QtWidgets.QDialog):
         
         for item in Persistencia.obtener_registro():
             self.ui.tbl_bodega.insertRow(num_fila)
-            bodega = QtWidgets.QTableWidgetItem(str(item.bodega))
+            bodega = QtWidgets.QTableWidgetItem(item.bodega)
           #  descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
             #codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
            # cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
@@ -180,6 +190,7 @@ class Registro(QtWidgets.QDialog):
             #self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
             #self.ui.tbl_bodega.setItem(num_fila,2,codigo)
             #self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
+    
             
     def llenar_tabla_con_bd(self, data):        
        # self.obtener_lista_bodegas_a_cmb()

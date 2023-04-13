@@ -110,7 +110,7 @@
     <string>Distribuidor</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btn_vent_pedido">
    <property name="geometry">
     <rect>
      <x>680</x>
@@ -262,7 +262,7 @@
     <string>Eliminar</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
