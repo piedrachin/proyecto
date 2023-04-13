@@ -322,3 +322,12 @@ Costo: 88888
 Fecha: 4/12/2023
 
 Bodega: Plastico
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: dsvdfzsbg
+Codigo: cadcd
+Cantidad: 11
+Costo: 5222
+Fecha: 4/12/2023
+
+Bodega: Granos

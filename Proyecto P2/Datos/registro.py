@@ -54,7 +54,9 @@ class Registro(QtWidgets.QDialog):
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
         
-        
+        self.ui.tbl_bodega.setColumnWidth(1,0)
+        self.ui.tbl_bodega.setColumnWidth(2,0)
+        self.ui.tbl_bodega.setColumnWidth(3,0)
         
         # este metodo me permite obtener las bodegas creadas de mi combobox
      
@@ -170,14 +172,14 @@ class Registro(QtWidgets.QDialog):
         for item in Persistencia.obtener_registro():
             self.ui.tbl_bodega.insertRow(num_fila)
             bodega = QtWidgets.QTableWidgetItem(str(item.bodega))
-            descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
-            codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
-            cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
+          #  descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
+            #codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
+           # cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             
             self.ui.tbl_bodega.setItem(num_fila,0,bodega)
-            self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
-            self.ui.tbl_bodega.setItem(num_fila,2,codigo)
-            self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
+            #self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
+            #self.ui.tbl_bodega.setItem(num_fila,2,codigo)
+            #self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
             
     def llenar_tabla_con_bd(self, data):        
        # self.obtener_lista_bodegas_a_cmb()
