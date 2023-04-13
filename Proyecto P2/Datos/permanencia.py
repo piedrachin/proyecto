@@ -8,12 +8,14 @@ class Persistencia:
     @classmethod    
     def obtener_registro(self):
         return self.lista_articulos
+    
     @classmethod
     def registro_distribuidor(self, objeto):
         self.lista_distribuidor.append(objeto)
     @classmethod
     def obtener_distribuidor(self):
         return self.lista_distribuidor
+    
     @classmethod
     def crear_bodega(self, obodega):
         self.lista_bodega.append(obodega)

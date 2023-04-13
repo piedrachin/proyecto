@@ -43,9 +43,9 @@ class Registro(QtWidgets.QDialog):
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
         
-        self.ui.tbl_bodega.setColumnWidth(1,0)
-        self.ui.tbl_bodega.setColumnWidth(2,0)
-        self.ui.tbl_bodega.setColumnWidth(3,0)
+      #  self.ui.tbl_bodega.setColumnWidth(1,0)
+       # self.ui.tbl_bodega.setColumnWidth(2,0)
+        #self.ui.tbl_bodega.setColumnWidth(3,0)
         
         # este metodo me permite obtener las bodegas creadas de mi combobox
     def iniciar_todos_los_botones_de_mi_vent_principal(self):
@@ -55,7 +55,7 @@ class Registro(QtWidgets.QDialog):
         self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
         self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
         self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
-      #  self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
+        self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
         self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
         self.ui.btn_refrescar_bodega.clicked.connect(lambda: self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
         self.ui.btn_elimar_tabla_bod.clicked.connect(self.eliminar_de_tabla_bodega)
@@ -151,23 +151,37 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.costo = str(self.ui.txt_costo.text())
         self.o_registro.fecha = str(self.ui.dateEdit.text())
         self.o_registro.bodega = self.ui.cmb_registro.currentText()
-       # BD.registrarArticulo(self.o_registro)
+        
         ingresar_articulos(self.o_registro)
         self.check_espacios_vacios()
-        #ingresar_articulos(self.o_registro)
+
         # metodo para veirifcar si deje espacio en blanco
         self.registro_art_txt() # me permite llevar un registro txt de todo
-        Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
+      #  Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
         self.limpiar_entrada()
         
     def eliminar_de_tabla_bodega(self):
-        selec_fila = self.ui.tbl_bodega.selectedItems()
-        
+        #selec_fila = self.ui.tbl_bodega.selectedItems()
+        selec_fila = self.ui.tbl_bodega.selectedItems()  
         if selec_fila:
-            articulo_id = (selec_fila[0].text())
+            bodega_id= str(selec_fila[0].text())
+            try:
+                
+                int(bodega_id)
+            except:
+                print("no se puede convertir,", str, " a int")
+            #bodega_id = int(selec_fila[0].text())
             fila = selec_fila[0].row()
-            if eliminar_bodega(articulo_id):
+            if eliminar_bodega(bodega_id):
                self.ui.tbl_bodega.removeRow(fila)
+        #try:
+        
+         #   if selec_fila:
+          #     articulo_id = int(selec_fila[0].text())
+           #    fila = selec_fila[0].row()
+            #if eliminar_bodega(articulo_id):
+             #  self.ui.tbl_bodega.removeRow(fila)
+        #except 
                
     def llenar_tabla_bodegas_en_Bd(self, data):
         self.ui.tbl_bodega.setRowCount(len(data))
@@ -179,17 +193,22 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_bodega.setRowCount(0)
         num_fila = self.ui.tbl_bodega.rowCount()
         
-        for item in Persistencia.obtener_registro():
+       # for item in Persistencia.obtener_registro():
+        for item in obtener_lista_bodegas():
             self.ui.tbl_bodega.insertRow(num_fila)
-            bodega = QtWidgets.QTableWidgetItem(item.bodega)
-          #  descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
-            #codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
-           # cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
-            
+            bodega = QtWidgets.QTableWidgetItem(item.Nombre)
             self.ui.tbl_bodega.setItem(num_fila,0,bodega)
-            #self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
-            #self.ui.tbl_bodega.setItem(num_fila,2,codigo)
-            #self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
+        
+        for item in Persistencia.obtener_registro():
+            self.ui.tbl_bodega.insertRow(num_fila)         
+            descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
+            codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
+            cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
+            
+           # self.ui.tbl_bodega.setItem(num_fila,0,bodega)
+            self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
+            self.ui.tbl_bodega.setItem(num_fila,2,codigo)
+            self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
     
             
     def llenar_tabla_con_bd(self, data):        
@@ -200,13 +219,14 @@ class Registro(QtWidgets.QDialog):
             for(index_cell, cell) in enumerate(row):
                 self.ui.tbl_registro_articulos.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
             
-    def crear_tabla_registro(self, data):# agregar data       
+    def crear_tabla_registro(self, data):# agregar data 
+        registro_art = seleccionar_articulos()      
         self.ui.tbl_registro_articulos.setRowCount(0)
         
         num_fila = self.ui.tbl_registro_articulos.rowCount()
          
-        for item in Persistencia.obtener_registro():
-                
+        #for item in Persistencia.obtener_registro():
+        for item in seleccionar_articulos():       
             self.ui.tbl_registro_articulos.insertRow(num_fila)
             descripcion = QtWidgets.QTableWidgetItem(item.descripcion)
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))

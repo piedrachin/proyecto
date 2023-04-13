@@ -331,3 +331,21 @@ Costo: 5222
 Fecha: 4/12/2023
 
 Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: 333
+Codigo: 333
+Cantidad: 3
+Costo: 33
+Fecha: 4/12/2023
+
+Bodega: Granos
+1
+---------- ARTICULOS REGISTRADOS ----------
+Descripcion: qqq
+Codigo: qq
+Cantidad: 111
+Costo: 1111
+Fecha: 4/12/2023
+
+Bodega: Granos

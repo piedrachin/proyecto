@@ -4,7 +4,7 @@ import sys
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
 from UI.uiVentPedido import Ui_Registro
-
+from .permanencia import *
 from PyQt6.QtCore import Qt
 from Datos.dataBase.basedatos import seleccionar_articulos
 
@@ -31,3 +31,27 @@ class VentanaPedido(QtWidgets.QDialog):
             for(index_cell, cell) in enumerate(row):
                 self.ui.tbl_lista_articulos_regis.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
     
+    def lista_articulos_registrados(self):
+        art_creado = seleccionar_articulos()
+        self.ui.tbl_lista_articulos_regis.setRowCount(0)
+        self.numFila = self.ui.tbl_lista_articulos_regis.rowCount()
+        
+        for items in art_creado():
+            self.ui.tbl_lista_articulos_regis.insertRow(self.numFila)
+            descripcion = QtWidgets.QTableWidgetItem(items.descripcion)
+            codigo = QtWidgets.QTableWidgetItem(str(items.codigo))
+            costo = QtWidgets.QTableWidgetItem(str(items.costo))
+            cantidad = QtWidgets.QTableWidgetItem(str(items.cantidad))
+            fecha = QtWidgets.QTableWidgetItem(str(items.fecha))
+            bodega = QtWidgets.QTableWidgetItem(str(items.bodega))
+            
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,0,descripcion) 
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,1,codigo)
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,2,costo)
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,3,cantidad)
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,4,fecha)
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,5,bodega) 
+
+            self.numFila +=1 # para sumar mas filas
+        
+           
