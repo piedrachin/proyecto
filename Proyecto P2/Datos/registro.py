@@ -63,6 +63,9 @@ class Registro(QtWidgets.QDialog):
     def limpiador_de_combobox_bodegas(self):
         self.ui.cmb_registro.clear()
         
+        
+        # este medodo me permite obtener, todas aquellas bodegas creadas en mi ventana bodega 
+        # o bien desde la principal, y actualizarlos en mi ventana de inicio
     def obtener_lista_bodegas_a_cmb(self):
         try:
             self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
@@ -74,11 +77,13 @@ class Registro(QtWidgets.QDialog):
                self.ui.cmb_registro.addItem(category[0])
         except pyodbc.Error as e:
             print(" Error al llamar bodega "+ str(e))                      
+   # se creo con el fin de ajustar las columnas de mis tablas..
     def ancho_de_columnas_en_tablas(self):
         self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
-        self.ui.tbl_bodega.setColumnWidth(1,230)
-            
+       # self.ui.tbl_bodega.setColumnWidth(1,230)
+       
+    # este metodo es para crear las bodegas y agregarlas a mi comboBox o bien a mi tabla en BD        
     def crear_bodega_en_CMB(self):
         self.nombre_bodega = Bodega()
         self.nombre_bodega.nombre = self.ui.txt_nombre_bodega.text()
@@ -88,6 +93,8 @@ class Registro(QtWidgets.QDialog):
         self.ui.txt_nombre_bodega.clear()
         
         #self.ui.txt_nombre_bodega.clear()
+        # metodo para eliminar articulos que estan dentro de mi tabla, que despliega los articulos existentes
+        # y los 
     def eliminar_articulos(self):
         selec_fila = self.ui.tbl_registro_articulos.selectedItems()
         
@@ -98,6 +105,8 @@ class Registro(QtWidgets.QDialog):
                self.ui.tbl_registro_articulos.removeRow(fila)
           # self.ui.tbl_registro_articulos.removeRow(fila)
           
+   # este metodo se hizo con el fin de tener un reporte o ma
+   # manejo de txt de todo aquello que se registra.         
     def registro_art_txt(self):
         descripcion = self.ui.txt_nombre.text()
         codigo = self.ui.txt_codigo.text()
@@ -118,7 +127,7 @@ class Registro(QtWidgets.QDialog):
         file.write("\n")
         i += 1
         file.close()    
- 
+ # metodo para iniciar la fecha actual en mi pantalla
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
    
@@ -128,13 +137,15 @@ class Registro(QtWidgets.QDialog):
         self.ventana_pedido = VentanaPedido()
         self.ventana_pedido.show()
         # este metodo me permite ir a la ventana del distribuidor
-    
+    # este metodo me permite ir a la ventana donde creo mi distribuidor
     def ventana_perfil_distribuidor(self):
         from .distribuidor import DistribuidorVentana
         self.ventana_distribuidor = DistribuidorVentana(self)
         self.ventana_distribuidor.show()# con este metodo muestro mi ventana
     
      # este metodo me permite ir a la ventana de crear bodega
+    
+    # este metodo me permite ir a la ventana bodega y crear una nueva
     def ventana_crear_bodega(self):
         from .bodega import VentanaBodega # importo mi clase de bodega
         self.ventana_bodega = VentanaBodega(self)
@@ -142,6 +153,8 @@ class Registro(QtWidgets.QDialog):
       
       
       # este metodo me permite registrar o bien crear un articulo, que se vera en mi tabla    
+  
+   # este metodo me permite registrar mis articulos de bodega
     def registrar_articulo(self):
     
         self.o_registro = Articulo()#       
@@ -163,7 +176,7 @@ class Registro(QtWidgets.QDialog):
     
     def encabezado_tabla_bodegas(self):
        
-        encabezados_columnas = ("ID","Bodega","Descripcion","Codigo","Cantidad")
+        encabezados_columnas = ("Bodega","Descripcion","Codigo","Cantidad")
         self.ui.tbl_bodega.setColumnCount(len(encabezados_columnas))
         self.ui.tbl_bodega.setHorizontalHeaderLabels(encabezados_columnas)
         
@@ -220,7 +233,7 @@ class Registro(QtWidgets.QDialog):
       #  for item in Persistencia.obtener_registro():
             
     
-            
+            # este metodo me permite llenar mi tabla de articulos con base de datos
     def llenar_tabla_con_bd(self, data):        
 
         self.ui.tbl_registro_articulos.setRowCount(len(data))
@@ -253,7 +266,7 @@ class Registro(QtWidgets.QDialog):
             
             num_fila +=1
        
-                                     
+         # metodo que me limpia mis bandejas donde agrego los datos, para ingresar uno nuevo                            
     def limpiar_entrada(self):
        self.ui.txt_nombre.clear()
        self.ui.txt_codigo.clear()
@@ -273,7 +286,8 @@ class Registro(QtWidgets.QDialog):
         
         if codigo == '' or costo == '' or nombre == '' or cantidad == '':
             
-            msg = QtWidgets.QMessageBox(text=" Dejaste algun espacio Vacio. ")
+            msg = QtWidgets.QMessageBox(text=" Dejaste Algun Espacio Vacio. "+
+                                        "\nPor Favor Verificar.")
             msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
             msg.StandardButton(QtWidgets.QMessageBox.StandardButton.Ok)
             msg.exec()

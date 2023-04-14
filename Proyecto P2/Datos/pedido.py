@@ -1,12 +1,13 @@
 import pyodbc
 import sys
-
+import datetime
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
 from UI.uiVentPedido import Ui_Registro
 from .permanencia import *
 from PyQt6.QtCore import Qt
-from Datos.dataBase.basedatos import seleccionar_articulos
+
+from Datos.dataBase.basedatos import seleccionar_articulos, con_string
 
 class VentanaPedido(QtWidgets.QDialog):
     
@@ -19,6 +20,38 @@ class VentanaPedido(QtWidgets.QDialog):
         self.lista_articulos_registrados_en_BD(seleccionar_articulos())
         self.encabezados_de_mi_tabla_lista_articulos_regis()
         self.ui.btn_refrescar_vent.clicked.connect(lambda:self.lista_articulos_registrados_en_BD(seleccionar_articulos()) )
+        self.obtener_lista_bodegas_a_cmb()
+        self.obtener_lista_distribuidores_a_cmb()
+        self.inicializar_controladores()
+    def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
+        self.ui.dateEdit.setDate(QtCore.QDate.currentDate())   
+    def obtener_lista_distribuidores_a_cmb(self):
+        #def obtener_nombre_dist():
+        try:
+            self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
+            print("Conexion A BD")
+            self.cur = self.conn.cursor()
+            self.cur.execute('''SELECT Distribuidor FROM distribuidor ''')
+            data = self.cur.fetchall()
+            for category in data:
+               self.ui.cmbox_distribuidor.addItem(category[0])
+        except pyodbc.Error as e:
+            print("Error de Conexion "+ str(e) ) 
+      
+        
+   
+    def obtener_lista_bodegas_a_cmb(self):
+        try:
+            self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
+            print("Conexion A BD")
+            self.cur = self.conn.cursor()
+            self.cur.execute('''SELECT Nombre FROM bodega ''')
+            data = self.cur.fetchall()
+            for category in data:
+               self.ui.cmbox_bodegas.addItem(category[0])
+        except pyodbc.Error as e:
+            print(" Error al llamar bodega "+ str(e))       
+    
     def encabezados_de_mi_tabla_lista_articulos_regis(self):
         encabezados_columnas = ("ID", "Descripcion","Codigo","Costo","Cantidad","Fecha","Bodega")
         self.ui.tbl_lista_articulos_regis.setColumnCount(len(encabezados_columnas))

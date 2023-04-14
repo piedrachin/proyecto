@@ -148,4 +148,19 @@ def obtener_lista_distribuidor():
         lista_dist = cur.fetchall() # con esto me traigo todo lo que esta registrado
         return lista_dist
     except pyodbc.Error as e:
-        print("Error de Conexion "+ str(e) )   
+        print("Error de Conexion "+ str(e) ) 
+        
+def obtener_nombre_dist():
+    conn = pyodbc.connect(con_string)# para conectarme a mi base 
+    print("Conexion A BD")
+    sql = (""" SELECT Distribuidor FROM distribuidor """)
+    
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        lista_dist = cur.fetchall() # con esto me traigo todo lo que esta registrado
+        print("Se obtuvo el nombre.")
+        return lista_dist
+    except pyodbc.Error as e:
+        print("Error de Conexion "+ str(e) ) 
+      

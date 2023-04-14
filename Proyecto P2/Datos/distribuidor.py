@@ -28,6 +28,7 @@ class DistribuidorVentana(QtWidgets.QWidget):
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
     
     def llenar_tabla_con_BD(self,data):
+      #  data = obtener_lista_distribuidor()
         self.ui.tbl_distribuidores.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
