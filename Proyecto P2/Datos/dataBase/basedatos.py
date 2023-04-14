@@ -11,14 +11,13 @@ def ingresar_articulos(oArticulo):
         print("Connected to db")
         
 
-        sql =  ("""INSERT INTO inventario (Descripcion, Codigo, Costo, Cantidad, Fecha, Bodega
-                )
+        sql =  ("""INSERT INTO inventario (Descripcion, Codigo, Costo, Cantidad, Fecha,Bodega)
   
                 VALUES (?,?,?,?,?,?)""")
         
         valores = (oArticulo.descripcion,oArticulo.codigo,
                oArticulo.costo,oArticulo.cantidad,
-               oArticulo.fecha,oArticulo.bodega)#, oArticulo.bodega
+               oArticulo.fecha, oArticulo.bodega)#, oArticulo.bodega
     
         cursor = conn.cursor()
 
@@ -101,7 +100,7 @@ def obtener_lista_bodegas():
 def eliminar_bodega(id):
     conn = pyodbc.connect(con_string)# para conectarme a mi base 
     print("Se conecto a BD ")
-    sql = (f"Delete from inventario where id_bodega = {id}")
+    sql = (f"Delete from inventario where id_bod = {id}")
   #  sql = (f"Delete from bodega Where id_bod = {id}")  
     try:              
         cur = conn.cursor() 
@@ -163,4 +162,22 @@ def obtener_nombre_dist():
         return lista_dist
     except pyodbc.Error as e:
         print("Error de Conexion "+ str(e) ) 
+        
+def eliminar_de_lista_distribuidor(id):
+    conn = pyodbc.connect(con_string)# para conectarme a mi base 
+    print("Se conecto a BD ")
+    sql = (f"Delete from distribuidor where id_dist = {id}")
+    try:              
+        cur = conn.cursor() 
+        cur.execute(sql)
+        conn.commit()
+        print("Distribuidor eliminado")
+        return True
+    except pyodbc.Error as e:
+        print("Error al eliminar: "+ str(e))
+    
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
       

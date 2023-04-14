@@ -15,6 +15,10 @@ class Persistencia:
     @classmethod
     def obtener_distribuidor(self):
         return self.lista_distribuidor
+    @classmethod    
+    def eliminarDistribuidor(self, numero):
+        self.lista_bodega.pop(numero)
+    
     
     @classmethod
     def crear_bodega(self, obodega):
@@ -22,4 +26,7 @@ class Persistencia:
     @classmethod
     def obtener_bodega(self):
         return self.lista_bodega
+    @classmethod    
+    def eliminarBodega(self, numero):
+        self.lista_bodega.pop(numero)
     

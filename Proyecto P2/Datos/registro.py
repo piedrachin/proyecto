@@ -49,16 +49,19 @@ class Registro(QtWidgets.QDialog):
         
         # este metodo me permite obtener las bodegas creadas de mi combobox
     def iniciar_todos_los_botones_de_mi_vent_principal(self):
-        self.ui.btn_vent_pedido.clicked.connect(self.ventana_control_pedidos)
-        self.ui.btn_refrescar_bodega.clicked.connect(self.crear_tabla_bodegas)
-        self.ui.btn_crear_bdg.clicked.connect(self.crear_bodega_en_CMB)
+       
+     #   self.ui.btn_refrescar_bodega.clicked.connect(self.crear_tabla_bodegas)
+    #    self.ui.btn_crear_bdg.clicked.connect(self.crear_bodega_en_CMB)
         self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
+        self.ui.btn_vent_pedido.clicked.connect(self.ventana_control_pedidos)
         self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
         self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
+        
         self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
         self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
-        self.ui.btn_refrescar_bodega.clicked.connect(lambda: self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
-        self.ui.btn_elimar_tabla_bod.clicked.connect(self.eliminar_de_tabla_bodega)
+        
+     #   self.ui.btn_refrescar_bodega.clicked.connect(lambda: self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
+      #  self.ui.btn_elimar_tabla_bod.clicked.connect(self.eliminar_de_tabla_bodega)
     
     def limpiador_de_combobox_bodegas(self):
         self.ui.cmb_registro.clear()
@@ -66,6 +69,7 @@ class Registro(QtWidgets.QDialog):
         
         # este medodo me permite obtener, todas aquellas bodegas creadas en mi ventana bodega 
         # o bien desde la principal, y actualizarlos en mi ventana de inicio
+   # este metodo se encarga de actualizarme el combobox, cuando creo una nueva bodega
     def obtener_lista_bodegas_a_cmb(self):
         try:
             self.conn = pyodbc.connect(con_string)# para conectarme a mi base 
@@ -163,8 +167,7 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.cantidad = str(self.ui.spBox_cantidad.value())
         self.o_registro.costo = str(self.ui.txt_costo.text())
         self.o_registro.fecha = str(self.ui.dateEdit.text())
-        self.o_registro.bodega = str(self.ui.cmb_registro.currentText()) 
-                 
+        self.o_registro.bodega = str(self.ui.cmb_registro.currentText())        
         ingresar_articulos(self.o_registro)
         
         self.check_espacios_vacios()
@@ -220,7 +223,8 @@ class Registro(QtWidgets.QDialog):
         for item in Persistencia.obtener_registro():
         #for item in obtener_lista_bodegas():
             self.ui.tbl_bodega.insertRow(num_fila)
-            bodega = QtWidgets.QTableWidgetItem(item.nombre)
+            bodega = QtWidgets.QTableWidgetItem(item.bodega
+                                                )
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))

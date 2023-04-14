@@ -1,11 +1,14 @@
 import pyodbc
 import sys
 import datetime
+import traceback
+from PyQt6.QtGui import *
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
 from UI.uiVentPedido import Ui_Registro
 from .permanencia import *
 from PyQt6.QtCore import Qt
+from Clases.claseArticulo import Articulo
 
 from Datos.dataBase.basedatos import seleccionar_articulos, con_string
 
@@ -17,14 +20,21 @@ class VentanaPedido(QtWidgets.QDialog):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.WindowType.Window) # esto me permite que mi nueva ventana pueda ser manipulada,
         # sobre mi ventana padre.
+        self.ob_art = None
         self.lista_articulos_registrados_en_BD(seleccionar_articulos())
         self.encabezados_de_mi_tabla_lista_articulos_regis()
         self.ui.btn_refrescar_vent.clicked.connect(lambda:self.lista_articulos_registrados_en_BD(seleccionar_articulos()) )
+        self.ui.btn_agregar_tabla.clicked.connect(self.control_articulos_ingresados)
+        self.ui.btn_imprimir.clicked.connect(self.metodo_imprimir_formato_txt)
         self.obtener_lista_bodegas_a_cmb()
         self.obtener_lista_distribuidores_a_cmb()
         self.inicializar_controladores()
+        self.modelolista = QtGui.QStandardItemModel()
+        self.ui.tbl_lista_por_imp.setModel(self.modelolista)
+        
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())   
+    
     def obtener_lista_distribuidores_a_cmb(self):
         #def obtener_nombre_dist():
         try:
@@ -37,9 +47,47 @@ class VentanaPedido(QtWidgets.QDialog):
                self.ui.cmbox_distribuidor.addItem(category[0])
         except pyodbc.Error as e:
             print("Error de Conexion "+ str(e) ) 
-      
+    """   
+        itemView = (self.ofactura.idfactura+
+                    " "+self.ofactura.nombreCliente+
+                    " "+
+                    str(self.ofactura.montofactura))
+        item = QtGui.QStandardItem(itemView)
+        self.modelolista.appendRow(item)      
+   """
+    def control_articulos_ingresados(self):
+        self.ob_art = Articulo()
+        self.ob_art.descripcion = self.ui.txt_nombre_art.text()
+        self.ob_art.codigo = str(self.ui.txt_codigo_art.text())
+        self.ob_art.cantidad = str(self.ui.spBox_cantidad.value())
+        self.ob_art.fecha = str(self.ui.dateEdit.text())
+        self.ob_art.bodega = str(self.ui.cmbox_bodegas.currentText())
+        self.ob_art.distribuidor = str(self.ui.cmbox_distribuidor.currentText())
         
-   
+        itemView = ("Descripcion: "+self.ob_art.descripcion+
+                    "\nCodigo: "+self.ob_art.codigo+
+                    "\nCantidades: "+self.ob_art.cantidad+
+                    "\nFecha Ingreso: "+self.ob_art.fecha+
+                    "\nBodega: "+self.ob_art.bodega+
+                    "\nDistribuidor: "+self.ob_art.distribuidor)
+        item = QtGui.QStandardItem(itemView)
+       # item = QtWidgets.QTreeWidgetItem(itemView)
+        self.modelolista.appendRow(item)
+        
+    def metodo_imprimir_formato_txt(self):  
+         
+        file = open("registro.txt", "a")
+        file.write(str(i+1))
+        file.write("\n---------- ARTICULOS REGISTRADOS ----------")
+      #  file.write(str(i))
+     #   file.write("\nDescripcion: "+descripcion+"\nCodigo: "+codigo+"\nCantidad: "
+      #             +cantidad+"\nCosto: "+costo+
+       #     "\nFecha: "+fecha+"\n"+ "\nBodega: "+bodega)
+       # file.write("\n")
+       #i += 1
+       # file.close()   
+         
+        
     def obtener_lista_bodegas_a_cmb(self):
         try:
             self.conn = pyodbc.connect(con_string)# para conectarme a mi base 

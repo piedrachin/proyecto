@@ -20,7 +20,8 @@ class VentanaBodega(QtWidgets.QWidget):
         # sobre mi ventana padre.
       #  self.crear_tabla_bodegas(obtener_lista_bodegas())
         self.ancho_de_columnas_en_tablas()
-      #  self.crear_tabla_bodega()
+        self.agregar_articulos_a_mi_tabla_bodegas()
+        self.crear_tabla_bodega()
         self.ob_bodega = None
         self.ui.btn_crear_bodega.clicked.connect(self.crear_bodega_en_cmb) # al darle click me creara la bodega en mi combobox
         self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas)
@@ -43,7 +44,7 @@ class VentanaBodega(QtWidgets.QWidget):
     def crear_bodega_en_cmb(self):
         self.ob_bodega = Bodega()
         self.ob_bodega.nombre = self.ui.txt_nombre_bodega.text()
-        
+         
         crear_bodega(self.ob_bodega)
         Persistencia.crear_bodega(self.ob_bodega)
         self.ui.txt_nombre_bodega.clear()
@@ -57,35 +58,45 @@ class VentanaBodega(QtWidgets.QWidget):
                 
     def eliminar_bodegas(self):
         selec_fila = self.ui.tbl_bodegas_cr.selectedItems()  
-        if selec_fila:
-            bodega_id= str(selec_fila[0].text())
-            try:
-                
-                int(bodega_id)
-            except:
-                print("no se puede convertir,", str, " a int")
-            #bodega_id = int(selec_fila[0].text())
-            fila = selec_fila[0].row()
-            if eliminar_bodega(bodega_id):
-               self.ui.tbl_bodegas_cr.removeRow(fila)
+        try:
+            if selec_fila:
+                articulo_id = int(selec_fila[0].text())
+                fila = selec_fila[0].row()
+                if eliminar_bodega(articulo_id):
+                    self.ui.tbl_bodegas_cr.removeRow(fila)
+        except:
+            print("No se pudo eliminar, ocurrio un error.")    
                
          
-
-   
-
+# este metood esta en veremos, esta tentativo
+    def agregar_articulos_a_mi_tabla_bodegas(self):
+        self.ui.tbl_bodegas_cr.setRowCount(0)
+        num_fila = self.ui.tbl_bodegas_cr.rowCount()
+        for item in Persistencia.obtener_registro():
+            self.ui.tbl_bodegas_cr.insertRow(num_fila)
+            
+            descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
+            cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
+            codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
+            
+            self.ui.tbl_bodegas_cr.setItem(num_fila,1,descripcion)
+            self.ui.tbl_bodegas_cr.setItem(num_fila,3,cantidad)
+            self.ui.tbl_bodegas_cr.setItem(num_fila,2,codigo)
+      
+      
+            
     def crear_tabla_bodega(self):
-        obtener_lista_bodegas()
+        #obtener_lista_bodegas()
         self.ui.tbl_bodegas_cr.setRowCount(0)
         num_fila = self.ui.tbl_bodegas_cr.rowCount()
     
         for item in Persistencia.obtener_registro():
             self.ui.tbl_bodegas_cr.insertRow(num_fila)
-      
             bodega = QtWidgets.QTableWidgetItem(str(item.bodega))
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
-           # cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
+            cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             
             self.ui.tbl_bodegas_cr.setItem(num_fila,0,bodega)
             self.ui.tbl_bodegas_cr.setItem(num_fila,1,descripcion)

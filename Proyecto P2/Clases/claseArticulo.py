@@ -9,3 +9,4 @@ class Articulo:
         self.cantidad = None
         self.fecha = None
         self.bodega = None
+        self.distribuidor = None

@@ -1,5 +1,6 @@
 import sys
 from  PyQt6 import QtCore,QtGui,QtWidgets
+
 #from Datos.registro import Registro
 from Datos.registro import Registro
 

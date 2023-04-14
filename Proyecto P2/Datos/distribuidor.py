@@ -9,7 +9,9 @@ from PyQt6.QtCore import Qt
 from Clases.claseDistribuidor import *
 import datetime
 from .permanencia import *
-from Datos.dataBase.basedatos import registrar_distribuidor,obtener_lista_distribuidor
+from Datos.dataBase.basedatos import (registrar_distribuidor,obtener_lista_distribuidor,
+                                      eliminar_de_lista_distribuidor)
+
 class DistribuidorVentana(QtWidgets.QWidget):
     
     def __init__(self, parent = None):
@@ -20,6 +22,7 @@ class DistribuidorVentana(QtWidgets.QWidget):
         self.inicializar_controladores()
         self.llenar_tabla_con_BD(obtener_lista_distribuidor())
         self.ob_distribuidor = None
+        self.ui.btn_eliminar_dist.clicked.connect(self.eliminar_distribuidor)
         self.ui.btn_crear_dist.clicked.connect(self.crear_distribuidor)
         self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_BD(obtener_lista_distribuidor()))
        # self.ui.tbl_distribuidores.setColumnWidth(0,0)
@@ -55,8 +58,17 @@ class DistribuidorVentana(QtWidgets.QWidget):
             
             num_fila +=1
         
+    def eliminar_distribuidor(self):    
+        selec_fila = self.ui.tbl_distribuidores.selectedItems()  
         
-    
+        try:
+            if selec_fila:
+                articulo_id = int(selec_fila[0].text())
+                fila = selec_fila[0].row()
+                if eliminar_de_lista_distribuidor(articulo_id):
+                    self.ui.tbl_distribuidores.removeRow(fila)
+        except:
+            print("No se pudo eliminar, ocurrio un error.")       
     def crear_distribuidor(self):
         self.ob_distribuidor = Distribuidor() # para usar las variables de mi clase distribuidor
         self.ob_distribuidor.distribuidor = str(self.ui.txt_nombre_emp.text())
