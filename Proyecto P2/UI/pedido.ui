@@ -43,17 +43,17 @@
     <string>Editar</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_imprimir">
+  <widget class="QPushButton" name="btn_abrir_reporte">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>270</y>
+     <x>100</x>
+     <y>170</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Imprimir</string>
+    <string>REPORTE</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tbl_lista_articulos_regis">
@@ -86,9 +86,9 @@ background-color: rgb(232, 232, 232);</string>
   <widget class="QListView" name="tbl_lista_por_imp">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>10</x>
      <y>280</y>
-     <width>501</width>
+     <width>611</width>
      <height>141</height>
     </rect>
    </property>
@@ -214,7 +214,7 @@ background-color: rgb(232, 232, 232);</string>
   <zorder>label_4</zorder>
   <zorder>btn_agregar_tabla</zorder>
   <zorder>btn_editar_tabla</zorder>
-  <zorder>btn_imprimir</zorder>
+  <zorder>btn_abrir_reporte</zorder>
   <zorder>tbl_lista_articulos_regis</zorder>
   <zorder>btn_refrescar_vent</zorder>
   <zorder>tbl_lista_por_imp</zorder>

@@ -1,7 +1,7 @@
 import pyodbc
 import sys
 import datetime
-import traceback
+import os
 from PyQt6.QtGui import *
 from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
@@ -31,7 +31,9 @@ class VentanaPedido(QtWidgets.QDialog):
         self.inicializar_controladores()
         self.modelolista = QtGui.QStandardItemModel()
         self.ui.tbl_lista_por_imp.setModel(self.modelolista)
-        self.ui.tbl_lista_por_imp.sele
+       # self.ui.tbl_lista_por_imp.sele
+        self.ui.btn_abrir_reporte.clicked.connect(self.abrir_ventana_reporte_OnClicked)
+        
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())   
     
@@ -47,14 +49,7 @@ class VentanaPedido(QtWidgets.QDialog):
                self.ui.cmbox_distribuidor.addItem(category[0])
         except pyodbc.Error as e:
             print("Error de Conexion "+ str(e) ) 
-    """   
-        itemView = (self.ofactura.idfactura+
-                    " "+self.ofactura.nombreCliente+
-                    " "+
-                    str(self.ofactura.montofactura))
-        item = QtGui.QStandardItem(itemView)
-        self.modelolista.appendRow(item)      
-   """
+
     def control_articulos_ingresados(self):
         self.ob_art = Articulo()
         self.ob_art.descripcion = self.ui.txt_nombre_art.text()
@@ -73,6 +68,7 @@ class VentanaPedido(QtWidgets.QDialog):
         item = QtGui.QStandardItem(itemView)
        # item = QtWidgets.QTreeWidgetItem(itemView)
         self.modelolista.appendRow(item)
+        self.metodo_imprimir_formato_txt()
         self.limpiar_bandejas_entrada()# metodo para que me permita añadir un atributo nuevo
         
     def metodo_imprimir_formato_txt(self):  
@@ -82,20 +78,22 @@ class VentanaPedido(QtWidgets.QDialog):
         bodega = self.ui.cmbox_bodegas.currentText()
         distribuidor = self.ui.cmbox_distribuidor.currentText()
         fecha = str(self.ui.dateEdit.text()) 
-        
         i = 0
-        for i in file:
-         
-            file = open("nuevo_ingreso.txt", "a")
-            file.write(str())
-            file.write("\n---------- ARTICULOS REGISTRADOS ----------")
-            file.write(str(i))
-            file.write("\nDescripcion: "+descripcion+"\nCodigo: "+codigo+"\nCantidad: "
+        file = open("nuevo_ingreso.txt", "a")
+        file.write(str())
+        file.write("\n---------- NUEVOS INGRESOS AL SISTEMA ----------")
+        file.write(str(i))
+        file.write("\nDescripcion: "+descripcion+"\nCodigo: "+codigo+"\nCantidad: "
                    +cantidad+"\nFecha "+fecha+
             "\nDistribuidor: "+distribuidor+"\n"+ "\nBodega: "+bodega)
-            file.write("\n")
-            file.close()   
-            i +=1
+        file.write("\n")
+        i +=1
+        file.close()   
+        
+        #este medodo me permetira abrir el lugar donde se encuentran mis entradas de producto, con su respectivo proveedor
+        
+    def abrir_ventana_reporte_OnClicked(self):
+        pass
         
     def obtener_lista_bodegas_a_cmb(self):
         try:
@@ -108,7 +106,7 @@ class VentanaPedido(QtWidgets.QDialog):
                self.ui.cmbox_bodegas.addItem(category[0])
         except pyodbc.Error as e:
             print(" Error al llamar bodega "+ str(e))       
-    
+        
     def encabezados_de_mi_tabla_lista_articulos_regis(self):
         encabezados_columnas = ("ID", "Descripcion","Codigo","Costo","Cantidad","Fecha","Bodega")
         self.ui.tbl_lista_articulos_regis.setColumnCount(len(encabezados_columnas))
