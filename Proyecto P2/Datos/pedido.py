@@ -25,7 +25,7 @@ class VentanaPedido(QtWidgets.QDialog):
         self.encabezados_de_mi_tabla_lista_articulos_regis()
         self.ui.btn_refrescar_vent.clicked.connect(lambda:self.lista_articulos_registrados_en_BD(seleccionar_articulos()) )
         self.ui.btn_agregar_tabla.clicked.connect(self.control_articulos_ingresados)
-        self.ui.btn_imprimir.clicked.connect(self.metodo_imprimir_formato_txt)
+        self.ui.btn_abrir_reporte.clicked.connect(self.metodo_imprimir_formato_txt)
         self.obtener_lista_bodegas_a_cmb()
         self.obtener_lista_distribuidores_a_cmb()
         self.inicializar_controladores()
