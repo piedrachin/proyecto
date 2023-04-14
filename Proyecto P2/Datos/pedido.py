@@ -31,7 +31,7 @@ class VentanaPedido(QtWidgets.QDialog):
         self.inicializar_controladores()
         self.modelolista = QtGui.QStandardItemModel()
         self.ui.tbl_lista_por_imp.setModel(self.modelolista)
-        
+        self.ui.tbl_lista_por_imp.sele
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())   
     
@@ -73,20 +73,29 @@ class VentanaPedido(QtWidgets.QDialog):
         item = QtGui.QStandardItem(itemView)
        # item = QtWidgets.QTreeWidgetItem(itemView)
         self.modelolista.appendRow(item)
+        self.limpiar_bandejas_entrada()# metodo para que me permita añadir un atributo nuevo
         
     def metodo_imprimir_formato_txt(self):  
+        descripcion = self.ui.txt_nombre_art.text()
+        codigo = self.ui.txt_codigo_art.text()
+        cantidad = str(self.ui.spBox_cantidad.value())
+        bodega = self.ui.cmbox_bodegas.currentText()
+        distribuidor = self.ui.cmbox_distribuidor.currentText()
+        fecha = str(self.ui.dateEdit.text()) 
+        
+        i = 0
+        for i in file:
          
-        file = open("registro.txt", "a")
-        file.write(str(i+1))
-        file.write("\n---------- ARTICULOS REGISTRADOS ----------")
-      #  file.write(str(i))
-     #   file.write("\nDescripcion: "+descripcion+"\nCodigo: "+codigo+"\nCantidad: "
-      #             +cantidad+"\nCosto: "+costo+
-       #     "\nFecha: "+fecha+"\n"+ "\nBodega: "+bodega)
-       # file.write("\n")
-       #i += 1
-       # file.close()   
-         
+            file = open("nuevo_ingreso.txt", "a")
+            file.write(str())
+            file.write("\n---------- ARTICULOS REGISTRADOS ----------")
+            file.write(str(i))
+            file.write("\nDescripcion: "+descripcion+"\nCodigo: "+codigo+"\nCantidad: "
+                   +cantidad+"\nFecha "+fecha+
+            "\nDistribuidor: "+distribuidor+"\n"+ "\nBodega: "+bodega)
+            file.write("\n")
+            file.close()   
+            i +=1
         
     def obtener_lista_bodegas_a_cmb(self):
         try:
@@ -136,4 +145,8 @@ class VentanaPedido(QtWidgets.QDialog):
 
             self.numFila +=1 # para sumar mas filas
         
-           
+    def limpiar_bandejas_entrada(self):
+        self.ui.txt_codigo_art.clear()
+        self.ui.txt_nombre_art.clear()
+        self.ui.spBox_cantidad.setValue(0)
+               
