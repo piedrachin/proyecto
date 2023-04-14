@@ -32,7 +32,7 @@ class Registro(QtWidgets.QDialog):
         self.o_registro = None
         self.ob_bodega = None
         self.tabla_articulos = []
-
+        self.encabezado_tabla_bodegas()
         self.obtener_lista_bodegas_a_cmb()
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
