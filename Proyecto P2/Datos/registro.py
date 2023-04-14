@@ -160,6 +160,12 @@ class Registro(QtWidgets.QDialog):
         #self.registro_art_txt() # me permite llevar un registro txt de todo
         Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
         self.limpiar_entrada()
+    
+    def encabezado_tabla_bodegas(self):
+       
+        encabezados_columnas = ("ID","Bodega","Descripcion","Codigo","Cantidad")
+        self.ui.tbl_bodega.setColumnCount(len(encabezados_columnas))
+        self.ui.tbl_bodega.setHorizontalHeaderLabels(encabezados_columnas)
         
     def eliminar_de_tabla_bodega(self):
         #selec_fila = self.ui.tbl_bodega.selectedItems()
