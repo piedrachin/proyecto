@@ -10,11 +10,15 @@ def ingresar_articulos(oArticulo):
         conn = pyodbc.connect(con_string)
         print("Connected to db")
         
-        sql =  ("""INSERT INTO inventario ( Descripcion, Codigo, Costo, Cantidad, Fecha, Bodega) 
-               VALUES(?,?,?,?,?,?)""")
+
+        sql =  ("""INSERT INTO inventario (Descripcion, Codigo, Costo, Cantidad, Fecha, Bodega
+                )
+  
+                VALUES (?,?,?,?,?,?)""")
+        
         valores = (oArticulo.descripcion,oArticulo.codigo,
                oArticulo.costo,oArticulo.cantidad,
-               oArticulo.fecha, oArticulo.bodega)
+               oArticulo.fecha,oArticulo.bodega)#, oArticulo.bodega
     
         cursor = conn.cursor()
 
@@ -23,7 +27,7 @@ def ingresar_articulos(oArticulo):
         print("Data inserted en tabla inventario")
 
     except pyodbc.Error as e:
-        print("Error Conexion")
+        print("Error Conexion" + str(e))
 
 def seleccionar_articulos():
     conn = pyodbc.connect(con_string)# para conectarme a mi base 

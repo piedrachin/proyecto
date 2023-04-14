@@ -150,14 +150,15 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.cantidad = str(self.ui.spBox_cantidad.value())
         self.o_registro.costo = str(self.ui.txt_costo.text())
         self.o_registro.fecha = str(self.ui.dateEdit.text())
-        self.o_registro.bodega = self.ui.cmb_registro.currentText()
-        
+        self.o_registro.bodega = str(self.ui.cmb_registro.currentText()) 
+                 
         ingresar_articulos(self.o_registro)
+        
         self.check_espacios_vacios()
 
         # metodo para veirifcar si deje espacio en blanco
-        self.registro_art_txt() # me permite llevar un registro txt de todo
-      #  Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
+        #self.registro_art_txt() # me permite llevar un registro txt de todo
+        Persistencia.registro_Articulo(self.o_registro) # para guardarlo y actualizarlo en mi tabla 
         self.limpiar_entrada()
         
     def eliminar_de_tabla_bodega(self):
@@ -184,6 +185,8 @@ class Registro(QtWidgets.QDialog):
         #except 
                
     def llenar_tabla_bodegas_en_Bd(self, data):
+      #  self.obtener_lista_bodegas_a_cmb()
+        self.obtener_lista_bodegas_a_cmb()
         self.ui.tbl_bodega.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
@@ -193,40 +196,40 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_bodega.setRowCount(0)
         num_fila = self.ui.tbl_bodega.rowCount()
         
-       # for item in Persistencia.obtener_registro():
-        for item in obtener_lista_bodegas():
-            self.ui.tbl_bodega.insertRow(num_fila)
-            bodega = QtWidgets.QTableWidgetItem(item.Nombre)
-            self.ui.tbl_bodega.setItem(num_fila,0,bodega)
+        
         
         for item in Persistencia.obtener_registro():
-            self.ui.tbl_bodega.insertRow(num_fila)         
+        #for item in obtener_lista_bodegas():
+            self.ui.tbl_bodega.insertRow(num_fila)
+            bodega = QtWidgets.QTableWidgetItem(item.nombre)
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             
-           # self.ui.tbl_bodega.setItem(num_fila,0,bodega)
+            self.ui.tbl_bodega.setItem(num_fila,0,bodega)
             self.ui.tbl_bodega.setItem(num_fila,1,descripcion)
             self.ui.tbl_bodega.setItem(num_fila,2,codigo)
             self.ui.tbl_bodega.setItem(num_fila,3,cantidad)
     
+      #  for item in Persistencia.obtener_registro():
+            
+    
             
     def llenar_tabla_con_bd(self, data):        
-       # self.obtener_lista_bodegas_a_cmb()
-        #self.obtener_lista_bodegas_a_cmb()# esta importacion me genera un duplicado en mi combobox
+
         self.ui.tbl_registro_articulos.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
                 self.ui.tbl_registro_articulos.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
             
     def crear_tabla_registro(self, data):# agregar data 
-        registro_art = seleccionar_articulos()      
+      #  registro_art = seleccionar_articulos()      
         self.ui.tbl_registro_articulos.setRowCount(0)
         
         num_fila = self.ui.tbl_registro_articulos.rowCount()
          
-        #for item in Persistencia.obtener_registro():
-        for item in seleccionar_articulos():       
+        for item in Persistencia.obtener_registro():
+       # for item in seleccionar_articulos():       
             self.ui.tbl_registro_articulos.insertRow(num_fila)
             descripcion = QtWidgets.QTableWidgetItem(item.descripcion)
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
@@ -234,13 +237,14 @@ class Registro(QtWidgets.QDialog):
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             fecha = QtWidgets.QTableWidgetItem(str(item.fecha))
             bodega = QtWidgets.QTableWidgetItem(str(item.bodega))
-            
+           
             self.ui.tbl_registro_articulos.setItem(num_fila,0,descripcion) 
             self.ui.tbl_registro_articulos.setItem(num_fila,1,codigo)
             self.ui.tbl_registro_articulos.setItem(num_fila,2,costo)
             self.ui.tbl_registro_articulos.setItem(num_fila,3,cantidad)
             self.ui.tbl_registro_articulos.setItem(num_fila,4,fecha)
             self.ui.tbl_registro_articulos.setItem(num_fila,5,bodega) 
+            
             num_fila +=1
        
                                      

@@ -18,11 +18,12 @@ class VentanaPedido(QtWidgets.QDialog):
         # sobre mi ventana padre.
         self.lista_articulos_registrados_en_BD(seleccionar_articulos())
         self.encabezados_de_mi_tabla_lista_articulos_regis()
-    
+        self.ui.btn_refrescar_vent.clicked.connect(lambda:self.lista_articulos_registrados_en_BD(seleccionar_articulos()) )
     def encabezados_de_mi_tabla_lista_articulos_regis(self):
-        encabezados_columnas = ( "Descripcion","Codigo","Costo","Cantidad","Fecha","Bodega")
+        encabezados_columnas = ("ID", "Descripcion","Codigo","Costo","Cantidad","Fecha","Bodega")
         self.ui.tbl_lista_articulos_regis.setColumnCount(len(encabezados_columnas))
         self.ui.tbl_lista_articulos_regis.setHorizontalHeaderLabels(encabezados_columnas)
+      #  self.ui.tbl_lista_articulos_regis.setColumnWidth(0,0)
     # este medoto me obtendra todos los articulos registrados en mi bd
     #data me permite obtener la lista completa de los items en mi tabla inventario
     def lista_articulos_registrados_en_BD(self, data):

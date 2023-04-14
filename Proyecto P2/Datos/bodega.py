@@ -8,7 +8,7 @@ from PyQt6.QtCore import Qt
 from Clases.claseBodega import *
 from .permanencia import *
 from Datos.dataBase.basedatos import con_string
-#from Datos.dataBase.basedatos import obtener_lista_bodegas, eliminar_bodega, crear_bodega
+from Datos.dataBase.basedatos import obtener_lista_bodegas, eliminar_bodega, crear_bodega
 
 class VentanaBodega(QtWidgets.QWidget):
     
@@ -74,6 +74,7 @@ class VentanaBodega(QtWidgets.QWidget):
    
 
     def crear_tabla_bodega(self):
+        obtener_lista_bodegas()
         self.ui.tbl_bodegas_cr.setRowCount(0)
         num_fila = self.ui.tbl_bodegas_cr.rowCount()
     
