@@ -33,13 +33,13 @@ def actualizar_articulos(oArticulo):#oArticulo
     print("Se conecto a BD") 
     try:
         sql = ("UPDATE MibaseDatos.inventario "+ 
-                    "SET descripcion = %s,"+
-                        "codigo = %s,"+
-                       "costo = %s,"+
-                       "cantidad = %s,"+
-                        "fecha = %s,"+
-                       " bodega = %s"+
-            "WHERE consecutivo =%s")
+                    "SET descripcion = ?,"+
+                        "codigo = ?,"+
+                       "costo = ?,"+
+                       "cantidad = ?,"+
+                        "fecha = ?,"+
+                       " bodega = ?"+
+            "WHERE consecutivo =?")
     
         valores = (oArticulo.descripcion,oArticulo.codigo,
                 oArticulo.costo,oArticulo.cantidad,

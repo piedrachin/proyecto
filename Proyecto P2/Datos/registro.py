@@ -71,7 +71,7 @@ class Registro(QtWidgets.QDialog):
                             
    # se creo con el fin de ajustar las columnas de mis tablas..
     def ancho_de_columnas_en_tablas(self):
-        self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
+        self.ui.tbl_registro_articulos.setColumnWidth(0, 10)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
        # self.ui.tbl_bodega.setColumnWidth(1,230)
        
@@ -89,16 +89,17 @@ class Registro(QtWidgets.QDialog):
    
     # este metodo me permitira actualizar mi inventario
     def metodo_actualizar_articulo(self):
+        self.ui.tbl_registro_articulos.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         try:
             self.o_registro = Articulo()#       
             self.o_registro.descripcion = self.ui.txt_nombre.text()
-            self.o_registro.codigo = str(self.ui.txt_codigo.text())
-            self.o_registro.cantidad = str(self.ui.spBox_cantidad.value())
-            self.o_registro.costo = str(self.ui.txt_costo.text())
-            self.o_registro.fecha = str(self.ui.dateEdit.text())
+            self.o_registro.codigo = (self.ui.txt_codigo.text())
+            self.o_registro.cantidad = (self.ui.spBox_cantidad.value())
+            self.o_registro.costo = (self.ui.txt_costo.text())
+            self.o_registro.fecha = (self.ui.dateEdit.text())
             bodega = self.ui.cmb_registro.currentIndex()   
             self.o_registro.bodega = bodega 
-            self.o_registro.consecutivo = str(self.ui.lineEdit.text())
+            self.o_registro.consecutivo = self.ui.lineEdit.text()
             actualizar_articulos(self.o_registro)
         except pyodbc.Error as e:
             print("Error al actualizar, favor verifique..!!"+ str(e))
