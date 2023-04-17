@@ -21,36 +21,29 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Agregar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_editar_tabla">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>200</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(235, 235, 235);</string>
    </property>
    <property name="text">
-    <string>Editar</string>
+    <string>Crear</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_abrir_reporte">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>170</y>
+     <x>240</x>
+     <y>410</y>
      <width>75</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(235, 235, 235);</string>
    </property>
    <property name="text">
     <string>REPORTE</string>
@@ -60,8 +53,8 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>10</y>
-     <width>391</width>
+     <y>0</y>
+     <width>411</width>
      <height>181</height>
     </rect>
    </property>
@@ -73,11 +66,14 @@ background-color: rgb(232, 232, 232);</string>
   <widget class="QPushButton" name="btn_refrescar_vent">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>200</y>
+     <x>540</x>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(235, 235, 235);</string>
    </property>
    <property name="text">
     <string>Refrescar</string>
@@ -87,22 +83,22 @@ background-color: rgb(232, 232, 232);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>280</y>
-     <width>611</width>
-     <height>141</height>
+     <y>260</y>
+     <width>181</width>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(232, 232, 232);</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>195</width>
-     <height>144</height>
+     <x>11</x>
+     <y>12</y>
+     <width>200</width>
+     <height>170</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -198,26 +194,77 @@ background-color: rgb(232, 232, 232);</string>
       </property>
      </widget>
     </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Consecutivo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="txt_consecutivo">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(221, 221, 221);</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <zorder>cmbox_distribuidor</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>cmbox_bodegas</zorder>
-  <zorder>txt_nombre_art</zorder>
-  <zorder>txt_codigo_art</zorder>
-  <zorder>spBox_cantidad</zorder>
-  <zorder>dateEdit</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_5</zorder>
-  <zorder>label_6</zorder>
-  <zorder>label_4</zorder>
+  <widget class="QTextEdit" name="textEdit_reportes">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>260</y>
+     <width>311</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>240</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>         NUEVOS REGISTROS </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>240</y>
+     <width>281</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>                REGISTROS COMPLETOS DE ARTICULOS</string>
+   </property>
+  </widget>
+  <zorder>layoutWidget</zorder>
   <zorder>btn_agregar_tabla</zorder>
-  <zorder>btn_editar_tabla</zorder>
   <zorder>btn_abrir_reporte</zorder>
   <zorder>tbl_lista_articulos_regis</zorder>
   <zorder>btn_refrescar_vent</zorder>
   <zorder>tbl_lista_por_imp</zorder>
+  <zorder>textEdit_reportes</zorder>
+  <zorder>label_8</zorder>
+  <zorder>label_9</zorder>
  </widget>
  <resources/>
  <connections/>

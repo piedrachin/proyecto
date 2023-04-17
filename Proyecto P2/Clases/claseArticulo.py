@@ -10,3 +10,4 @@ class Articulo:
         self.fecha = None
         self.bodega = None
         self.distribuidor = None
+        self.consecutivo = None

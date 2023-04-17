@@ -7,8 +7,8 @@ from UI.uiBodega import Ui_Bodega
 from PyQt6.QtCore import Qt
 from Clases.claseBodega import *
 from .permanencia import *
-from Datos.dataBase.basedatos import con_string
-from Datos.dataBase.basedatos import obtener_lista_bodegas, eliminar_bodega, crear_bodega
+#from Datos.dataBase.basedatos import con_string
+from Datos.dataBase.basedatos import obtener_lista_bodegas, eliminar_bodega, crear_bodega, seleccionar_articulos
 
 class VentanaBodega(QtWidgets.QWidget):
     
@@ -18,15 +18,18 @@ class VentanaBodega(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.WindowType.Window) # esto me permite que mi nueva ventana pueda ser manipulada,
         # sobre mi ventana padre.
-      #  self.crear_tabla_bodegas(obtener_lista_bodegas())
+     
         self.ancho_de_columnas_en_tablas()
-        self.agregar_articulos_a_mi_tabla_bodegas()
-        self.crear_tabla_bodega()
+   
+  
+        self.encabezados_de_mi_tabla_bodega()
+        self.lista_articulos_registrados_x_bodega_en_BD(seleccionar_articulos())
         self.ob_bodega = None
         self.ui.btn_crear_bodega.clicked.connect(self.crear_bodega_en_cmb) # al darle click me creara la bodega en mi combobox
-        self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas)
+      #  self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas)
      #   self.ui.btn_eliminar_bodega.clicked.connect(self.eliminar_bodegas_creadas)
         self.ui.btn_actualizar.clicked.connect(lambda:self.crear_tabla_bodegas(obtener_lista_bodegas()) )
+        #self.ui.btn_actualizar.clicked.connect(lambda: self.lista_articulos_registrados_x_bodega_en_BD(seleccionar_articulos()))
     def eliminar_bodegas_creadas(self):
         selec_fila = self.ui.tbl_bodegas_cr.selectedItems()
         
@@ -50,7 +53,7 @@ class VentanaBodega(QtWidgets.QWidget):
         self.ui.txt_nombre_bodega.clear()
         
     def crear_tabla_bodegas(self, data):
-        self.crear_bodega_en_cmb()
+      #  self.agregar_articulos_a_mi_tabla_bodegas()
         self.ui.tbl_bodegas_cr.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
@@ -67,12 +70,23 @@ class VentanaBodega(QtWidgets.QWidget):
         except:
             print("No se pudo eliminar, ocurrio un error.")    
                
-         
+    def encabezados_de_mi_tabla_bodega(self):
+        encabezados_columnas = ("Bodega","Articulo", "Codigo","Costo","Cantidad")
+        self.ui.tbl_bodegas_cr.setColumnCount(len(encabezados_columnas))
+        self.ui.tbl_bodegas_cr.setHorizontalHeaderLabels(encabezados_columnas)
+        
+    def lista_articulos_registrados_x_bodega_en_BD(self, data):
+        self.ui.tbl_bodegas_cr.setRowCount(len(data))
+        for (index_row, row) in enumerate(data):
+            for(index_cell, cell) in enumerate(row):
+                self.ui.tbl_bodegas_cr.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))    
 # este metood esta en veremos, esta tentativo
     def agregar_articulos_a_mi_tabla_bodegas(self):
+        
         self.ui.tbl_bodegas_cr.setRowCount(0)
         num_fila = self.ui.tbl_bodegas_cr.rowCount()
         for item in Persistencia.obtener_registro():
+    #    for item in Persistencia.obtener_registro():
             self.ui.tbl_bodegas_cr.insertRow(num_fila)
             
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))

@@ -1,0 +1,63 @@
+
+---------- ARTICULOS REGISTRADOS ----------0
+Descripcion: ÑAMPI ENTERO
+Codigo: VR30
+Cantidad: 40
+Fecha 4/13/2023
+Distribuidor: FRUTOS DEL ESTE
+
+Bodega: VERDURAS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------0
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/14/2023
+Distribuidor: MASACA
+
+Bodega: GRANOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------0
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/14/2023
+Distribuidor: MASACA
+
+Bodega: GRANOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------0
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/14/2023
+Distribuidor: MASACA
+
+Bodega: GRANOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------0
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/14/2023
+Distribuidor: MASACA
+
+Bodega: GRANOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------0
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/14/2023
+Distribuidor: MASACA
+
+Bodega: GRANOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------0
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/14/2023
+Distribuidor: MASACA
+
+Bodega: GRANOS

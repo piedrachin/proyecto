@@ -11,7 +11,7 @@ def ingresar_articulos(oArticulo):
         print("Connected to db")
         
 
-        sql =  ("""INSERT INTO inventario (Descripcion, Codigo, Costo, Cantidad, Fecha,Bodega)
+        sql =  ("""INSERT INTO inventario (descripcion, codigo, costo, cantidad, fecha,bodega)
   
                 VALUES (?,?,?,?,?,?)""")
         
@@ -27,7 +27,37 @@ def ingresar_articulos(oArticulo):
 
     except pyodbc.Error as e:
         print("Error Conexion" + str(e))
-
+        
+def actualizar_articulos(oArticulo):#oArticulo
+    conn = pyodbc.connect(con_string)# con esto creo mi conexion automaticamente
+    print("Se conecto a BD") 
+    try:
+        sql = ("UPDATE MibaseDatos.inventario "+ 
+                    "SET descripcion = %s,"+
+                        "codigo = %s,"+
+                       "costo = %s,"+
+                       "cantidad = %s,"+
+                        "fecha = %s,"+
+                       " bodega = %s"+
+            "WHERE consecutivo =%s")
+    
+        valores = (oArticulo.descripcion,oArticulo.codigo,
+                oArticulo.costo,oArticulo.cantidad,
+                oArticulo.bodega, oArticulo.fecha, oArticulo.consecutivo)
+    
+        cur = conn.cursor()
+        cur.execute(sql,valores)
+        conn.commit()
+        print("Actualizacion correcta de articulo")
+        return True
+    except pyodbc.Error as e:
+        print("Error actualizando registro: "+ str(e))
+    finally:
+        if conn:
+           cur.close()
+           conn.close()
+            
+            
 def seleccionar_articulos():
     conn = pyodbc.connect(con_string)# para conectarme a mi base 
     sql = """SELECT * FROM inventario """
@@ -48,7 +78,7 @@ def eliminarArticulo(id):
     conn = pyodbc.connect(con_string)# para conectarme a mi base 
     print("Se conecto a BD")
     
-    sql = (f"Delete from inventario where id_art = {id}")  
+    sql = (f"Delete from inventario where consecutivo = {id}")  
     try:              
         
         
@@ -69,13 +99,13 @@ def eliminarArticulo(id):
 def crear_bodega(oBodega):
     try:
         conn = pyodbc.connect(con_string)
-        sql = ("""INSERT INTO bodega (Nombre) 
+        sql = ("""INSERT INTO bodega (nombre) 
                VALUES(?)""")
         valores = (oBodega.nombre)
         cursor = conn.cursor()
         cursor.execute(sql, valores)
         conn.commit()
-        print("Data inserted en tabla bodega")
+        print("Data inserted en tabla bodega (inventario)")
 
     except pyodbc.Error as e:
         print("Error Conexion" + str(e))
@@ -83,7 +113,7 @@ def crear_bodega(oBodega):
 def obtener_lista_bodegas():
     conn = pyodbc.connect(con_string)# para conectarme a mi base 
     print("Conexion A BD")
-    sql = (""" SELECT Nombre FROM bodega """)
+    sql = (""" SELECT bodega FROM inventario """)
     try:
         cur = conn.cursor()
         cur.execute(sql)

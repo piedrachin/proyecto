@@ -25,6 +25,9 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(234, 234, 234);</string>
+   </property>
    <property name="text">
     <string>Crear</string>
    </property>
@@ -176,6 +179,9 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(234, 234, 234);</string>
+   </property>
    <property name="text">
     <string>Refrescar</string>
    </property>
@@ -188,6 +194,9 @@
      <width>75</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(234, 234, 234);</string>
    </property>
    <property name="text">
     <string>Eliminar</string>
