@@ -14,7 +14,7 @@ from Clases.claseBodega import Bodega
 from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
 
-from Datos.dataBase.basedatos import crear_bodega,ingresar_articulos,seleccionar_articulos,eliminarArticulo,con_string,actualizar_articulos, obtener_lista_bodegas
+from Datos.dataBase.basedatos import crear_bodega,ingresar_articulos,seleccionar_articulos,eliminarArticulo,con_string,actualizar_articulos, obtener_lista_bodegas,buscar_articulo
 
 import datetime
 
@@ -23,13 +23,13 @@ import datetime
 
 class Registro(QtWidgets.QDialog):
     
-    def __init__(self, parent = None):
+    def __init__(self, parent = None, _id = None):
         super(Registro, self).__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.o_registro = None
-        self._id = None
         self.ob_bodega = None
+        self.modo = 'M'
         self.tabla_articulos = []
         self.encabezado_tabla_bodegas()
         self.ancho_de_columnas_en_tablas()
@@ -51,6 +51,8 @@ class Registro(QtWidgets.QDialog):
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
         
+        self.ui.tbl_registro_articulos.clicked.connect(self.metodo_cargar_datos_en_controles)
+        
         self.ui.btn_actualizar_bod.clicked.connect(lambda:self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
         # este metodo me permite obtener las bodegas creadas de mi combobox
 
@@ -71,7 +73,7 @@ class Registro(QtWidgets.QDialog):
                             
    # se creo con el fin de ajustar las columnas de mis tablas..
     def ancho_de_columnas_en_tablas(self):
-        self.ui.tbl_registro_articulos.setColumnWidth(0, 10)
+        self.ui.tbl_registro_articulos.setColumnWidth(0, 0)
         self.ui.tbl_registro_articulos.setColumnWidth(1,230)
        # self.ui.tbl_bodega.setColumnWidth(1,230)
        
@@ -86,7 +88,37 @@ class Registro(QtWidgets.QDialog):
 
         # metodo para eliminar articulos que estan dentro de mi tabla, que despliega los articulos existentes
         # y los 
-   
+    def metodo_para_llenar_controles(self):
+        
+       try:
+            self.ui.txt_codigo.setText(str(self.o_registro.codigo))
+            self.ui.txt_costo.setText(str(self.o_registro.costo))
+            self.ui.txt_nombre.setText(str(self.o_registro.descripcion))
+            self.ui.spBox_cantidad.setValue(int(self.o_registro.cantidad))
+          #  self.ui.dateEdit.setCurrentSection(str(self.o_registro.fecha))
+            self.ui.cmb_registro.setCurrentText(str(self.o_registro.bodega))
+            
+       except pyodbc.Error as e:
+           print("Error en datos "+ str(e))
+
+    def metodo_cargar_datos_en_controles(self):
+        try:
+            pos = self.ui.tbl_registro_articulos.selectedItems()
+            fila = pos[0].row()
+            id_fila = self.ui.tbl_registro_articulos.item(fila,0).text()
+            rs = buscar_articulo(id_fila)
+            if rs != None:               
+                self.o_registro = Articulo()
+                self.o_registro.descripcion = str(rs[1])
+                self.o_registro.codigo= str(rs[2])
+                self.o_registro.costo = str(rs[3])
+                self.o_registro.cantidad = str(rs[4])
+        #       self.o_registro.fecha = str(rs[4])
+                self.o_registro.bodega = str(rs[6])
+                self.metodo_para_llenar_controles()
+        except pyodbc.Error as e:
+            print("error de conexion "+str(e))
+    
     # este metodo me permitira actualizar mi inventario
     def metodo_actualizar_articulo(self):
         self.ui.tbl_registro_articulos.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
@@ -96,11 +128,13 @@ class Registro(QtWidgets.QDialog):
             self.o_registro.codigo = (self.ui.txt_codigo.text())
             self.o_registro.cantidad = (self.ui.spBox_cantidad.value())
             self.o_registro.costo = (self.ui.txt_costo.text())
-            self.o_registro.fecha = (self.ui.dateEdit.text())
+         #   self.o_registro.fecha = (self.ui.dateEdit.text())
             bodega = self.ui.cmb_registro.currentIndex()   
             self.o_registro.bodega = bodega 
             self.o_registro.consecutivo = self.ui.lineEdit.text()
             actualizar_articulos(self.o_registro)
+                
+                    
         except pyodbc.Error as e:
             print("Error al actualizar, favor verifique..!!"+ str(e))
         

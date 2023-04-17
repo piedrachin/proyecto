@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>635</width>
-    <height>447</height>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,8 +36,8 @@
   <widget class="QPushButton" name="btn_abrir_reporte">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>410</y>
+     <x>550</x>
+     <y>430</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -84,8 +84,8 @@ background-color: rgb(232, 232, 232);</string>
     <rect>
      <x>10</x>
      <y>260</y>
-     <width>181</width>
-     <height>181</height>
+     <width>221</width>
+     <height>191</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -214,7 +214,7 @@ background-color: rgb(232, 232, 232);</string>
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>260</y>
+     <y>240</y>
      <width>311</width>
      <height>181</height>
     </rect>
@@ -226,9 +226,9 @@ background-color: rgb(232, 232, 232);</string>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>60</x>
      <y>240</y>
-     <width>151</width>
+     <width>121</width>
      <height>20</height>
     </rect>
    </property>
@@ -236,14 +236,14 @@ background-color: rgb(232, 232, 232);</string>
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>         NUEVOS REGISTROS </string>
+    <string>    NUEVOS REGISTROS </string>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>240</y>
+     <x>340</x>
+     <y>220</y>
      <width>281</width>
      <height>16</height>
     </rect>

@@ -1,41 +1,30 @@
 
-
 ---------- NUEVOS INGRESOS AL SISTEMA ----------
 CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: Aguacate Hass peq
-Codigo: AG01
+Descripcion: TOMATE X KILO
+Codigo: TM03
 Cantidad: 50
 Fecha 4/16/2023
 Distribuidor: FRUTOS DEL ESTE
 
-Bodega: FRUTAS
+Bodega: FRUTAS/VERDURAS
 
 ---------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: MANGO
-Codigo: MG01
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0003
+Descripcion: AGUACATE HASS X UND
+Codigo: AG02
 Cantidad: 40
 Fecha 4/16/2023
 Distribuidor: FRUTOS DEL ESTE
 
+Bodega: FRUTAS/VERDURAS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
+Descripcion: MANZANA VERDE X UND
+Codigo: MZ01
+Cantidad: 50
+Fecha 4/17/2023
+Distribuidor: FRUTOS DEL ESTE
+
 Bodega: FRUTAS
-
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: PEZ GLOBO
-Codigo: PZ30
-Cantidad: 30
-Fecha 4/16/2023
-Distribuidor: PESCADERIA LA FAMILIA
-
-Bodega: MARISCOS
-
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: SALMON X KILO
-Codigo: PZ01
-Cantidad: 40
-Fecha 4/16/2023
-Distribuidor: PESCADERIA LA FAMILIA
-
-Bodega: MARISCOS

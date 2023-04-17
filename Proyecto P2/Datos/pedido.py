@@ -71,8 +71,6 @@ class VentanaPedido(QtWidgets.QDialog):
         self.ob_art.consecutivo = formato_registro.format(numero_registro)
         self.ui.txt_consecutivo.setText(" "+ self.ob_art.consecutivo)
         self.ob_art.consecutivo = self.ui.txt_consecutivo.text()
-    
-        
         self.ob_art.descripcion = self.ui.txt_nombre_art.text()
         self.ob_art.codigo = str(self.ui.txt_codigo_art.text())
         self.ob_art.cantidad = str(self.ui.spBox_cantidad.value())
@@ -140,7 +138,7 @@ class VentanaPedido(QtWidgets.QDialog):
             print(" Error al llamar bodega "+ str(e))       
         
     def encabezados_de_mi_tabla_lista_articulos_regis(self):
-        encabezados_columnas = ("ID", "Descripcion","Codigo","Costo","Cantidad","Fecha","Bodega")
+        encabezados_columnas = ("ID", "Descripcion","Codigo","Costo","Cantidad","Fecha","Bodega","Distribuidor")
         self.ui.tbl_lista_articulos_regis.setColumnCount(len(encabezados_columnas))
         self.ui.tbl_lista_articulos_regis.setHorizontalHeaderLabels(encabezados_columnas)
       #  self.ui.tbl_lista_articulos_regis.setColumnWidth(0,0)
@@ -165,13 +163,15 @@ class VentanaPedido(QtWidgets.QDialog):
             cantidad = QtWidgets.QTableWidgetItem(str(items.cantidad))
             fecha = QtWidgets.QTableWidgetItem(str(items.fecha))
             bodega = QtWidgets.QTableWidgetItem(str(items.bodega))
+            distribuidor =QtWidgets.QTableWidgetItem(str(items.distribuidor))
             
             self.ui.tbl_lista_articulos_regis.setItem(self.numFila,0,descripcion) 
             self.ui.tbl_lista_articulos_regis.setItem(self.numFila,1,codigo)
             self.ui.tbl_lista_articulos_regis.setItem(self.numFila,2,costo)
             self.ui.tbl_lista_articulos_regis.setItem(self.numFila,3,cantidad)
             self.ui.tbl_lista_articulos_regis.setItem(self.numFila,4,fecha)
-            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,5,bodega) 
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,5,bodega)
+            self.ui.tbl_lista_articulos_regis.setItem(self.numFila,6,distribuidor) 
 
             self.numFila +=1 # para sumar mas filas
         

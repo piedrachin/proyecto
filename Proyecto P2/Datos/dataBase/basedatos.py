@@ -11,13 +11,13 @@ def ingresar_articulos(oArticulo):
         print("Connected to db")
         
 
-        sql =  ("""INSERT INTO inventario (descripcion, codigo, costo, cantidad, fecha,bodega)
+        sql =  ("""INSERT INTO inventario (descripcion, codigo, costo, cantidad, fecha,bodega,distribuidor)
   
-                VALUES (?,?,?,?,?,?)""")
+                VALUES (?,?,?,?,?,?,?)""")
         
         valores = (oArticulo.descripcion,oArticulo.codigo,
                oArticulo.costo,oArticulo.cantidad,
-               oArticulo.fecha, oArticulo.bodega)#, oArticulo.bodega
+               oArticulo.fecha, oArticulo.bodega, oArticulo.distribuidor)#, oArticulo.bodega
     
         cursor = conn.cursor()
 
@@ -30,20 +30,20 @@ def ingresar_articulos(oArticulo):
         
 def actualizar_articulos(oArticulo):#oArticulo
     conn = pyodbc.connect(con_string)# con esto creo mi conexion automaticamente
-    print("Se conecto a BD") 
+    print("Se conecto a BD para actualizar") 
     try:
-        sql = ("UPDATE MibaseDatos.inventario "+ 
-                    "SET descripcion = ?,"+
-                        "codigo = ?,"+
-                       "costo = ?,"+
-                       "cantidad = ?,"+
-                        "fecha = ?,"+
-                       " bodega = ?"+
-            "WHERE consecutivo =?")
+        sql = ('UPDATE inventario SET descripcion = ?, codigo = ?, costo = ?, cantidad = ?, bodega = ? WHERE consecutivo = ?') 
+ #                   'SET descripcion = ?,'+
+  #                      'codigo = ?,'+
+   #                    'costo = ?,'+
+    #                   'cantidad = ?,'+
+     #                   'fecha = ?,'+
+      #                 ' bodega = ?'+
+       #     'WHERE consecutivo = ?')
     
         valores = (oArticulo.descripcion,oArticulo.codigo,
                 oArticulo.costo,oArticulo.cantidad,
-                oArticulo.bodega, oArticulo.fecha, oArticulo.consecutivo)
+                oArticulo.bodega, oArticulo.consecutivo)
     
         cur = conn.cursor()
         cur.execute(sql,valores)
@@ -72,6 +72,20 @@ def seleccionar_articulos():
         if conn:
             cur.close()
             conn.close()
+def buscar_articulo(_id) -> dict:
+    
+    conn = pyodbc.connect(con_string)
+    
+    sentenciaSQL = "Select * from inventario Where consecutivo = ?"   
+    try: 
+        valores = (_id)
+        cur = conn.cursor()
+        cur.execute(sentenciaSQL,valores)  
+        rs = cur.fetchone()
+        return rs
+    
+    except pyodbc.Error as e:
+        print("Error de conexion "+str(e))
             
             
 def eliminarArticulo(id):
