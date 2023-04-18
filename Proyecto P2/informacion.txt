@@ -1,0 +1,14 @@
+Dentro de mi carpeta Clases, se encuentran los metodos utilizados con un constructor de cada clase que
+hicieron posible el desarrollo del sistema. Uno para bodega, uno para articulo, uno para distribuidor.
+
+
+Dentro de mi carpeta datos se encuentra los metodos para manipular mi grafica y que fueran funcionales,
+lo correspondiente al codigo fuente como tal. 
+
+Dentro de mi carpeta Datos se encuentra otra carpeta llamada "dataBase", en esta carpeta
+se encuentra mi base de datos, en este caso se utilizo ACCESS de Microsoft, que hizo posible la permanencia 
+de datos para luego manipularlos.
+
+Dentro de mi carpeta UI se encuentra lo correspondiente al codigo que hace y dibuja mi grafica.
+
+Finalmente el metodo "main.py" que me permite ejecutar mi programa y funcionar.

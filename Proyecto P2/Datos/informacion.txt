@@ -1,0 +1,4 @@
+Cada metodo dentro de mi carpeta datos contiene todo el codigo que se utilizo para la realizacion del
+proyecto, cada metodo como dice segun cada descripcion, fue la encargada de administrar y ejecutar el codigo 
+correspondiente a cada ventana y guardarlo, por ejemplo en el metodo "distribuidor.py"
+se almacena todo el codigo que hizo posible que mi ventana distribuidor funcionara.

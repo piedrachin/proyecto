@@ -1,0 +1,4 @@
+En esta carpeta clases, encuentras 3 clases, una bodega, una articulo y una distribuidor
+con sus respectivos metodos utilizados para el desarrollo he implementacion del sistema, 
+necesarios para que el sitema corriera de la mejor forma. Cada una posee un metodo
+que luego se invocaria para poder habilitar los controles de mi QT

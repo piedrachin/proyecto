@@ -1,0 +1,10 @@
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/17/2023
+Distribuidor: 
+
+Bodega: FRUTAS/VERDURAS

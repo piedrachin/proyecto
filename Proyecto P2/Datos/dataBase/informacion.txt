@@ -1,0 +1,3 @@
+Esta carpeta contiene mi base de datos, la misma se hizo con ACCESS de Microsoft,
+para tener una permanencia en los datos y que los mismos fueran utilizados, editados 
+agregados dentro de las diferentes pantallas, y generarme asi un respaldo.

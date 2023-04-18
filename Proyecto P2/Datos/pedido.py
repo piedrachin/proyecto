@@ -39,10 +39,6 @@ class VentanaPedido(QtWidgets.QDialog):
         self.ui.tbl_lista_articulos_regis.setColumnWidth(0,0)
         self.ui.txt_consecutivo.setReadOnly(True)
         self.ui.textEdit_reportes.setReadOnly(True)
-    def dsplegar_registros_de_ingresos_desde_txt(self):
-        from .registrostxt import VentanaRegistrosDelTxt
-        self.ventana_reportes = VentanaRegistrosDelTxt(self)
-        self.ventana_reportes.show()
         
         
         
