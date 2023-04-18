@@ -286,7 +286,7 @@ class Registro(QtWidgets.QDialog):
         
     
     def llenar_tabla_bodegas_en_Bd(self, data):
-        self.crear_tabla_bodegas
+        self.crear_tabla_bodegas()
         self.ui.tbl_lista_bodegas.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
@@ -304,10 +304,10 @@ class Registro(QtWidgets.QDialog):
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             
-            self.ui.tbl_lista_bodegas.setItem(self.num_fila,0,bodega)
-            self.ui.tbl_lista_bodegas.setItem(self.num_fila,1,descripcion)
-            self.ui.tbl_lista_bodegas.setItem(self.num_fila,2,codigo)
-            self.ui.tbl_lista_bodegas.setItem(self.num_fila,3,cantidad)
+            self.ui.tbl_lista_bodegas.setItem(num_fila,0,bodega)
+            self.ui.tbl_lista_bodegas.setItem(num_fila,1,descripcion)
+            self.ui.tbl_lista_bodegas.setItem(num_fila,2,codigo)
+            self.ui.tbl_lista_bodegas.setItem(num_fila,3,cantidad)
               
             num_fila += 1 # para que me sume mas filas
       #  for item in Persistencia.obtener_registro():

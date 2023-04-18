@@ -8,3 +8,53 @@ Fecha 4/17/2023
 Distribuidor: 
 
 Bodega: FRUTAS/VERDURAS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
+Descripcion: q
+Codigo: q
+Cantidad: 1
+Fecha 4/17/2023
+Distribuidor: q
+
+Bodega: FRUTAS/VERDURAS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
+Descripcion: HELADO DELEITE LTR
+Codigo: HL02
+Cantidad: 50
+Fecha 4/17/2023
+Distribuidor: DOS PINOS SA
+
+Bodega: LACTEOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0003
+Descripcion: CHOCOLETA 300ML
+Codigo: CH01
+Cantidad: 50
+Fecha 4/17/2023
+Distribuidor: DOS PINOS SA
+
+Bodega: LACTEOS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
+Descripcion: q
+Codigo: q
+Cantidad: 0
+Fecha 4/17/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+
+---------- NUEVOS INGRESOS AL SISTEMA ----------
+CONSECUTIVO DE NUEVOS INGRESOS:  REG#0003
+Descripcion: ARROZ TIO PELON 2K
+Codigo: AZ30
+Cantidad: 50
+Fecha 4/17/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: GRANOS
