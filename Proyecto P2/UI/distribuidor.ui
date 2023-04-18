@@ -16,22 +16,6 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(85, 170, 127);</string>
   </property>
-  <widget class="QPushButton" name="btn_crear_dist">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>190</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(234, 234, 234);</string>
-   </property>
-   <property name="text">
-    <string>Crear</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -170,37 +154,51 @@
     <string>Fecha</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_refrescar">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
-     <width>75</width>
-     <height>23</height>
+     <y>230</y>
+     <width>101</width>
+     <height>92</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(234, 234, 234);</string>
-   </property>
-   <property name="text">
-    <string>Refrescar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_eliminar_dist">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>280</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(234, 234, 234);</string>
-   </property>
-   <property name="text">
-    <string>Eliminar</string>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Crear Distribuidor</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QPushButton" name="btn_crear_dist">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(234, 234, 234);</string>
+      </property>
+      <property name="text">
+       <string>&gt;&gt;&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Refrescar Pantalla</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QPushButton" name="btn_refrescar">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(234, 234, 234);</string>
+      </property>
+      <property name="text">
+       <string>&gt;&gt;&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

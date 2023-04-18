@@ -46,8 +46,7 @@ class VentanaBodega(QtWidgets.QWidget):
      # este metodo me crea las bodegas y las inserta en ACCESS
     def crear_bodega_en_cmb(self):
         self.ob_bodega = Bodega()
-        self.ob_bodega.nombre = self.ui.txt_nombre_bodega.text()
-         
+        self.ob_bodega.nombre = self.ui.txt_nombre_bodega.text()  
         crear_bodega(self.ob_bodega)
         Persistencia.crear_bodega(self.ob_bodega)
         self.ui.txt_nombre_bodega.clear()
@@ -82,20 +81,23 @@ class VentanaBodega(QtWidgets.QWidget):
                 self.ui.tbl_bodegas_cr.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))    
 # este metood esta en veremos, esta tentativo
     def agregar_articulos_a_mi_tabla_bodegas(self):
-        
+       # art_cread = seleccionar_articulos()
         self.ui.tbl_bodegas_cr.setRowCount(0)
         num_fila = self.ui.tbl_bodegas_cr.rowCount()
         for item in Persistencia.obtener_registro():
     #    for item in Persistencia.obtener_registro():
             self.ui.tbl_bodegas_cr.insertRow(num_fila)
-            
+          #  bodega = QtWidgets.QTableWidgetItem(item.nombre)
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
             cantidad = QtWidgets.QTableWidgetItem(str(item.cantidad))
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
             
+           # self.ui.tbl_bodegas_cr.setItem(num_fila,0,bodega)
             self.ui.tbl_bodegas_cr.setItem(num_fila,1,descripcion)
             self.ui.tbl_bodegas_cr.setItem(num_fila,3,cantidad)
             self.ui.tbl_bodegas_cr.setItem(num_fila,2,codigo)
+            
+            num_fila += 1
       
       
             

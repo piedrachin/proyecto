@@ -22,11 +22,13 @@ class DistribuidorVentana(QtWidgets.QWidget):
         self.inicializar_controladores()
         self.llenar_tabla_con_BD(obtener_lista_distribuidor())
         self.ob_distribuidor = None
-        self.ui.btn_eliminar_dist.clicked.connect(self.eliminar_distribuidor)
+        #este metodo no me funciono, me genero un error por lo cual lo quite
+      #  self.ui.btn_eliminar_dist.clicked.connect(self.eliminar_distribuidor)
         self.ui.btn_crear_dist.clicked.connect(self.crear_distribuidor)
         self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_BD(obtener_lista_distribuidor()))
        # self.ui.tbl_distribuidores.setColumnWidth(0,0)
-        
+        self.ui.tbl_distribuidores.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.ui.tbl_distribuidores.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
     
@@ -39,28 +41,28 @@ class DistribuidorVentana(QtWidgets.QWidget):
             
     
     def tabla_distribuidores(self):
-        
+        dato_dist = obtener_lista_distribuidor()
         self.ui.tbl_distribuidores.setRowCount(0)
         
         num_fila = self.ui.tbl_distribuidores.rowCount()
          
-        for item in Persistencia.obtener_distribuidor():
+        for item in dato_dist:
             self.ui.tbl_distribuidores.insertRow(num_fila)
             distribuidor = QtWidgets.QTableWidgetItem(item.distribuidor)
             cedula = QtWidgets.QTableWidgetItem(str(item.cedula))
             telefono = QtWidgets.QTableWidgetItem(str(item.telefono))
             fecha = QtWidgets.QTableWidgetItem(str(item.fecha))
             
-            self.ui.tbl_distribuidores.setItem(num_fila,0,distribuidor) 
-            self.ui.tbl_distribuidores.setItem(num_fila,1,telefono)
-            self.ui.tbl_distribuidores.setItem(num_fila,2,cedula)
-            self.ui.tbl_distribuidores.setItem(num_fila,3,fecha)
+            self.ui.tbl_distribuidores.setItem(num_fila,1,distribuidor) 
+            self.ui.tbl_distribuidores.setItem(num_fila,2,telefono)
+            self.ui.tbl_distribuidores.setItem(num_fila,3,cedula)
+            self.ui.tbl_distribuidores.setItem(num_fila,4,fecha)
             
             num_fila +=1
         
-    def eliminar_distribuidor(self):    
-        selec_fila = self.ui.tbl_distribuidores.selectedItems()  
-        
+    def eliminar_distribuidor(self):  
+        self.ui.tbl_distribuidores.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)  
+        selec_fila = self.ui.tbl_distribuidores.selectedItems() 
         try:
             if selec_fila:
                 articulo_id = int(selec_fila[0].text())

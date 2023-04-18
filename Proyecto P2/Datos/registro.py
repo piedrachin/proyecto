@@ -10,6 +10,7 @@ from UI.uiRegistro import Ui_Dialog
 from Clases.claseArticulo import Articulo
 from Clases.claseDistribuidor import Distribuidor
 from Clases.claseBodega import Bodega
+from PyQt6.QtWidgets import *
 #from .registro import Articulo
 from .permanencia import *
 #from .mibasedatos import registrar_articulo_en_bd
@@ -30,27 +31,32 @@ class Registro(QtWidgets.QDialog):
         self.o_registro = None
         self.ob_bodega = None
         self.modo = 'M'
-        self.tabla_articulos = []
+        self.ui.tbl_lista_bodegas.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.ui.tbl_registro_articulos.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.habilitar_controles(False)
         self.encabezado_tabla_bodegas()
         self.ancho_de_columnas_en_tablas()
         self.inicializar_controladores()
         self.obtener_lista_bodegas_e_insertar_en_cmb()
-        self.crear_tabla_bodegas()
+      #  self.crear_tabla_bodegas()
         #self.iniciar_todos_los_botones_de_mi_vent_principal()
-        self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas())
-        self.llenar_tabla_con_bd(seleccionar_articulos())
-        self.ui.btn_editar_articull.clicked.connect(self.metodo_actualizar_articulo)
+       # self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas())
+        self.llenar_tabla_bodegas_en_Bd(seleccionar_articulos())
+       # self.llenar_tabla_con_bd(seleccionar_articulos())
+        self.ui.btn_editar_articull.clicked.connect(lambda: self.establecerModoPantalla(self.ui.btn_editar_articull))   
+        self.ui.btn_nuevo_in.clicked.connect(lambda: self.establecerModoPantalla(self.ui.btn_nuevo_in))
+       # self.ui.btn_editar_articull.clicked.connect(self.metodo_actualizar_articulo)
         self.ui.btn_agregar.clicked.connect(self.registrar_articulo)   
         self.ui.btn_vent_pedido.clicked.connect(self.ventana_control_pedidos)
         self.ui.btn_distribuidor.clicked.connect(self.ventana_perfil_distribuidor)
-      #  self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
+        #self.ui.btn_crear_bodega.clicked.connect(self.ventana_crear_bodega)
         self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_bd(seleccionar_articulos()))
         self.ui.btn_eliminar_tabla.clicked.connect(self.eliminar_articulos)
         self.ui.btn_crear_bodega_2.clicked.connect(self.crear_bodega_en_CMB)
         reg_ex = QtCore.QRegularExpression("^[0-9]*(\.[0-9]{1,2})?$") # esto es para que solo me permita numeros
         input_validator = QtGui.QRegularExpressionValidator(reg_ex, self.ui.txt_costo)# y no se introduzcan letras
         self.ui.txt_costo.setValidator(input_validator)
-        
+       # self.crear_tabla_bodegas()
         self.ui.tbl_registro_articulos.clicked.connect(self.metodo_cargar_datos_en_controles)
         
         self.ui.btn_actualizar_bod.clicked.connect(lambda:self.llenar_tabla_bodegas_en_Bd(obtener_lista_bodegas()))
@@ -88,6 +94,42 @@ class Registro(QtWidgets.QDialog):
 
         # metodo para eliminar articulos que estan dentro de mi tabla, que despliega los articulos existentes
         # y los 
+    def establecerModoPantalla(self,oButton:QtWidgets.QPushButton):
+        
+        if oButton.text() == "Nuevo":
+            self.modoPantalla = 'N'           
+            self.ui.btn_editar_articull.setEnabled(True)
+            self.ui.btn_eliminar_tabla.setEnabled(True)
+            self.ui.btn_nuevo_in.setEnabled(True)
+            self.ui.btn_agregar.setEnabled(True)            
+            self.inicializar_controladores()
+            self.habilitar_controles(True)
+            self.ui.lineEdit.setFocus() 
+            return
+        
+               
+        if oButton.text() == "Editar":
+            pos = self.ui.tbl_registro_articulos.selectedItems()
+            if not pos:
+                msg = QtWidgets.QMessageBox(self)
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                msg.setWindowTitle("Modificar registro")
+                msg.setText("Seleccione un articulo.")
+                msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                msg.exec()
+                return
+            self.modoPantalla = 'M'
+            self.ui.btn_nuevo_in.setEnabled(True)
+            self.ui.btn_editar_articull.setEnabled(True)
+            self.ui.btn_eliminar_tabla.setEnabled(True)
+            self.ui.btn_agregar.setEnabled(True)
+            self.habilitar_controles(True)
+            self.ui.lineEdit.setEnabled(False)
+            self.ui.txt_nombre.setEnabled(False)
+            self.ui.lineEdit.setFocus()
+            return
+        
+    
     def metodo_para_llenar_controles(self):
         
        try:
@@ -118,25 +160,42 @@ class Registro(QtWidgets.QDialog):
                 self.metodo_para_llenar_controles()
         except pyodbc.Error as e:
             print("error de conexion "+str(e))
-    
+    def habilitar_controles(self, sehabilita):
+        self.ui.txt_codigo.setEnabled(sehabilita)
+        self.ui.txt_nombre.setEnabled(sehabilita)
+        self.ui.cmb_registro.setEnabled(sehabilita)
+        self.ui.txt_costo.setEnabled(sehabilita)
+        self.ui.lineEdit.setEnabled(sehabilita)# este es mi consecutivo el lineEdit
     # este metodo me permitira actualizar mi inventario
     def metodo_actualizar_articulo(self):
         self.ui.tbl_registro_articulos.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
-        try:
-            self.o_registro = Articulo()#       
-            self.o_registro.descripcion = self.ui.txt_nombre.text()
-            self.o_registro.codigo = (self.ui.txt_codigo.text())
-            self.o_registro.cantidad = (self.ui.spBox_cantidad.value())
-            self.o_registro.costo = (self.ui.txt_costo.text())
+        if  self.modoPantalla == 'M':
+                msgBox = QtWidgets.QMessageBox()
+                msgBox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msgBox.setText("Desea modificar al Articulo {}".format(self.ui.lineEdit.text()))
+                msgBox.setWindowTitle("Confirmar Modificar Articulo")
+                msgBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)                
+                returnValue = msgBox.exec()
+                if returnValue == QtWidgets.QMessageBox.StandardButton.Yes:                         
+                    self.o_registro = Articulo()#       
+                    self.o_registro.descripcion = self.ui.txt_nombre.text()
+                    self.o_registro.codigo = (self.ui.txt_codigo.text())
+                    self.o_registro.cantidad = (self.ui.spBox_cantidad.value())
+                    self.o_registro.costo = (self.ui.txt_costo.text())
          #   self.o_registro.fecha = (self.ui.dateEdit.text())
-            bodega = self.ui.cmb_registro.currentIndex()   
-            self.o_registro.bodega = bodega 
-            self.o_registro.consecutivo = self.ui.lineEdit.text()
-            actualizar_articulos(self.o_registro)
-                
+                    bodega = self.ui.cmb_registro.currentIndex()   
+                    self.o_registro.bodega = bodega 
+                    self.o_registro.consecutivo = self.ui.lineEdit.text()
+                    actualizar_articulos(self.o_registro)
+                    self.ui.btn_editar_articull.setEnabled(True)
+                    self.ui.btn_eliminar_tabla.setEnabled(True)
+          #  self.metodo_cargar_datos_en_controles() 
+                    self.llenar_tabla_registro()   
+                    self.habilitar_controles(False)
+                    self.limpiar_entrada()
                     
-        except pyodbc.Error as e:
-            print("Error al actualizar, favor verifique..!!"+ str(e))
+      #  except pyodbc.Error as e:
+       #     print("Error al actualizar, favor verifique..!!"+ str(e))
         
     def eliminar_articulos(self):
         # esto me permetira seleccionar una fila completa, sin poder editar, solo elimar todo.
@@ -149,7 +208,7 @@ class Registro(QtWidgets.QDialog):
             if eliminarArticulo(articulo_id):
                self.ui.tbl_registro_articulos.removeRow(fila)
                
-          # self.ui.tbl_registro_articulos.removeRow(fila)
+        
           
    # este metodo se hizo con el fin de tener un reporte o ma
    # manejo de txt de todo aquello que se registra.         
@@ -225,31 +284,9 @@ class Registro(QtWidgets.QDialog):
         self.ui.tbl_lista_bodegas.setColumnCount(len(encabezados_columnas))
         self.ui.tbl_lista_bodegas.setHorizontalHeaderLabels(encabezados_columnas)
         
-   # def eliminar_de_tabla_bodega(self):
-        #selec_fila = self.ui.tbl_bodega.selectedItems()
-      #  selec_fila = self.ui.tbl_bodega.selectedItems()  
-       # if selec_fila:
-        #    bodega_id= str(selec_fila[0].text())
-         #   try:
-          #      
-            #    int(bodega_id)
-           # except:
-             #   print("no se puede convertir,", str, " a int")
-            #bodega_id = int(selec_fila[0].text())
-           # fila = selec_fila[0].row()
-           # if eliminar_bodega(bodega_id):
-            #   self.ui.tbl_bodega.removeRow(fila)
-        #try:
-        
-         #   if selec_fila:
-          #     articulo_id = int(selec_fila[0].text())
-           #    fila = selec_fila[0].row()
-            #if eliminar_bodega(articulo_id):
-             #  self.ui.tbl_bodega.removeRow(fila)
-        #except 
-               
+    
     def llenar_tabla_bodegas_en_Bd(self, data):
-        
+        self.crear_tabla_bodegas
         self.ui.tbl_lista_bodegas.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
@@ -258,11 +295,10 @@ class Registro(QtWidgets.QDialog):
     def crear_tabla_bodegas(self):# esta tabla me permitira obtener la bodega y su respectivo material y cantidad
         art_cread = seleccionar_articulos()
         self.ui.tbl_lista_bodegas.setRowCount(0)
-        self.num_fila = self.ui.tbl_lista_bodegas.rowCount()
-        
+        num_fila = self.ui.tbl_lista_bodegas.rowCount()    
         for item in art_cread:
        # for item in obtener_lista_bodegas():
-            self.ui.tbl_lista_bodegas.insertRow(self.num_fila)
+            self.ui.tbl_lista_bodegas.insertRow(num_fila)
             bodega = QtWidgets.QTableWidgetItem(item.bodega)                                
             descripcion  = QtWidgets.QTableWidgetItem(str(item.descripcion))
             codigo = QtWidgets.QTableWidgetItem(str(item.codigo))
@@ -273,21 +309,24 @@ class Registro(QtWidgets.QDialog):
             self.ui.tbl_lista_bodegas.setItem(self.num_fila,2,codigo)
             self.ui.tbl_lista_bodegas.setItem(self.num_fila,3,cantidad)
               
-            self.num_fila += 1 # para que me sume mas filas
+            num_fila += 1 # para que me sume mas filas
       #  for item in Persistencia.obtener_registro():
             
     
             # este metodo me permite llenar mi tabla de articulos con base de datos
     def llenar_tabla_con_bd(self, data):        
-
+         
         self.ui.tbl_registro_articulos.setRowCount(len(data))
         for (index_row, row) in enumerate(data):
             for(index_cell, cell) in enumerate(row):
                 self.ui.tbl_registro_articulos.setItem(index_row, index_cell,QTableWidgetItem(str(cell)))
-            
+    
+    def llenar_tabla_registro(self):
+         
+        datos = seleccionar_articulos()     
         num_fila = self.ui.tbl_registro_articulos.rowCount()
          
-        for item in Persistencia.obtener_registro():
+        for item in datos:
        # for item in seleccionar_articulos():       
             self.ui.tbl_registro_articulos.insertRow(num_fila)
             descripcion = QtWidgets.QTableWidgetItem(item.descripcion)

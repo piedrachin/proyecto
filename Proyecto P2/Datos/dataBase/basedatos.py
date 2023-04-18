@@ -207,10 +207,10 @@ def obtener_nombre_dist():
     except pyodbc.Error as e:
         print("Error de Conexion "+ str(e) ) 
         
-def eliminar_de_lista_distribuidor(id):
+def eliminar_de_lista_distribuidor(_id):
     conn = pyodbc.connect(con_string)# para conectarme a mi base 
     print("Se conecto a BD ")
-    sql = (f"Delete from distribuidor where id_dist = {id}")
+    sql = (f"Delete from distribuidor where id_dist = {_id}")
     try:              
         cur = conn.cursor() 
         cur.execute(sql)
