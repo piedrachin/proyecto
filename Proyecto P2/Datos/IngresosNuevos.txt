@@ -76,3 +76,25 @@ Distribuidor: GRUPO GRANOS CR
 
 Bodega: GRANOS
 Estado: SALIDA
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: arroz tio pelon 2k
+Codigo: AR02
+Cantidad: 0
+Fecha 4/18/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: 
+Codigo: 
+Cantidad: 0
+Fecha 4/18/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
