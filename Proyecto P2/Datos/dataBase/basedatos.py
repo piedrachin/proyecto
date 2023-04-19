@@ -11,13 +11,13 @@ def ingresar_articulos(oArticulo):
         print("Connected to db")
         
 
-        sql =  ("""INSERT INTO inventario (descripcion, codigo, costo, cantidad, fecha,bodega,distribuidor)
+        sql =  ("""INSERT INTO inventario (descripcion, codigo, costo, cantidad, fecha,bodega,distribuidor, estado)
   
-                VALUES (?,?,?,?,?,?,?)""")
+                VALUES (?,?,?,?,?,?,?,?)""")
         
         valores = (oArticulo.descripcion,oArticulo.codigo,
                oArticulo.costo,oArticulo.cantidad,
-               oArticulo.fecha, oArticulo.bodega, oArticulo.distribuidor)#, oArticulo.bodega
+               oArticulo.fecha, oArticulo.bodega, oArticulo.distribuidor, oArticulo.estado)#, oArticulo.bodega
     
         cursor = conn.cursor()
 
@@ -27,6 +27,28 @@ def ingresar_articulos(oArticulo):
 
     except pyodbc.Error as e:
         print("Error Conexion" + str(e))
+    
+def actualizar_articulos_en_pedido(oArticulo):#oArticulo
+    conn = pyodbc.connect(con_string)# con esto creo mi conexion automaticamente
+    print("Se conecto a BD para actualizar") 
+    try:
+        sql = ('UPDATE inventario SET descripcion = ?, codigo = ?, costo = ?, cantidad = ?, bodega = ?, distribuidor = ?, estado = ? WHERE consecutivo = ?') 
+ 
+        valores = (oArticulo.descripcion,oArticulo.codigo,
+               oArticulo.cantidad,
+                oArticulo.bodega,oArticulo.distribuidor,oArticulo.estado, oArticulo.consecutivo)
+    
+        cur = conn.cursor()
+        cur.execute(sql,valores)
+        conn.commit()
+        print("Actualizacion correcta de articulo")
+        return True
+    except pyodbc.Error as e:
+        print("Error actualizando registro: "+ str(e))
+    finally:
+        if conn:
+           cur.close()
+           conn.close()
         
 def actualizar_articulos(oArticulo):#oArticulo
     conn = pyodbc.connect(con_string)# con esto creo mi conexion automaticamente

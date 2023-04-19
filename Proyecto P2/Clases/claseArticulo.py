@@ -11,3 +11,4 @@ class Articulo:
         self.bodega = None
         self.distribuidor = None
         self.consecutivo = None
+        self.estado = None

@@ -1,60 +1,78 @@
 
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: 
-Codigo: 
-Cantidad: 0
-Fecha 4/17/2023
-Distribuidor: 
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: BANANO ENANO X UND
+Codigo: BN
+Cantidad: 50
+Fecha 4/18/2023
+Distribuidor: FRUTOS DEL VALLE
 
 Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
 
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: q
-Codigo: q
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: qq
+Codigo: qq
 Cantidad: 1
-Fecha 4/17/2023
-Distribuidor: q
-
-Bodega: FRUTAS/VERDURAS
-
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: HELADO DELEITE LTR
-Codigo: HL02
-Cantidad: 50
-Fecha 4/17/2023
-Distribuidor: DOS PINOS SA
-
-Bodega: LACTEOS
-
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0003
-Descripcion: CHOCOLETA 300ML
-Codigo: CH01
-Cantidad: 50
-Fecha 4/17/2023
-Distribuidor: DOS PINOS SA
-
-Bodega: LACTEOS
-
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0002
-Descripcion: q
-Codigo: q
-Cantidad: 0
-Fecha 4/17/2023
+Fecha 4/18/2023
 Distribuidor: FRUTOS DEL VALLE
 
 Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
 
----------- NUEVOS INGRESOS AL SISTEMA ----------
-CONSECUTIVO DE NUEVOS INGRESOS:  REG#0003
-Descripcion: ARROZ TIO PELON 2K
-Codigo: AZ30
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: ww
+Codigo: ww
 Cantidad: 50
-Fecha 4/17/2023
+Fecha 4/18/2023
 Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: 11
+Codigo: 11
+Cantidad: 1
+Fecha 4/18/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: ww
+Codigo: ww
+Cantidad: 1
+Fecha 4/18/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: 11
+Codigo: 11
+Cantidad: 1
+Fecha 4/18/2023
+Distribuidor: FRUTOS DEL VALLE
+
+Bodega: FRUTAS/VERDURAS
+Estado: ENTRADA
+
+---------- NUEVOS REGISTROS EN SISTEMA ----------
+CONSECUTIVO DE NUEVOS REGISTROS:  REG#0002
+Descripcion: arroz tio pelon 2k
+Codigo: AR02
+Cantidad: 30
+Fecha 4/18/2023
+Distribuidor: GRUPO GRANOS CR
 
 Bodega: GRANOS
+Estado: SALIDA

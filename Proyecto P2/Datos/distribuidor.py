@@ -27,6 +27,8 @@ class DistribuidorVentana(QtWidgets.QWidget):
         self.ui.btn_crear_dist.clicked.connect(self.crear_distribuidor)
         self.ui.btn_refrescar.clicked.connect(lambda: self.llenar_tabla_con_BD(obtener_lista_distribuidor()))
        # self.ui.tbl_distribuidores.setColumnWidth(0,0)
+        self.ui.txt_ced_juri_emp.setMaxLength(10)
+        self.ui.txt_telefono_emp.setMaxLength(8)
         self.ui.tbl_distribuidores.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         self.ui.tbl_distribuidores.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
     def inicializar_controladores(self):# con esto inicializo my fecha en py pantalla window

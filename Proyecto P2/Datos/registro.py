@@ -160,6 +160,7 @@ class Registro(QtWidgets.QDialog):
                 self.metodo_para_llenar_controles()
         except pyodbc.Error as e:
             print("error de conexion "+str(e))
+            
     def habilitar_controles(self, sehabilita):
         self.ui.txt_codigo.setEnabled(sehabilita)
         self.ui.txt_nombre.setEnabled(sehabilita)
@@ -181,7 +182,8 @@ class Registro(QtWidgets.QDialog):
                     self.o_registro.descripcion = self.ui.txt_nombre.text()
                     self.o_registro.codigo = (self.ui.txt_codigo.text())
                     self.o_registro.cantidad = (self.ui.spBox_cantidad.value())
-                    self.o_registro.costo = (self.ui.txt_costo.text())
+                    
+                    #self.o_registro.costo = (self.ui.txt_costo.text())
          #   self.o_registro.fecha = (self.ui.dateEdit.text())
                     bodega = self.ui.cmb_registro.currentIndex()   
                     self.o_registro.bodega = bodega 
@@ -268,7 +270,8 @@ class Registro(QtWidgets.QDialog):
         self.o_registro.cantidad = str(self.ui.spBox_cantidad.value())
         self.o_registro.costo = str(self.ui.txt_costo.text())
         self.o_registro.fecha = str(self.ui.dateEdit.text())
-        self.o_registro.bodega = str(self.ui.cmb_registro.currentText())        
+        self.o_registro.bodega = str(self.ui.cmb_registro.currentText())
+              
         ingresar_articulos(self.o_registro)
         
         self.check_espacios_vacios()

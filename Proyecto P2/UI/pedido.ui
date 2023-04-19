@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>635</width>
-    <height>456</height>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>190</y>
+     <y>210</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -30,14 +30,14 @@
     <string notr="true">background-color: rgb(235, 235, 235);</string>
    </property>
    <property name="text">
-    <string>Crear</string>
+    <string>Guardar</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_abrir_reporte">
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>430</y>
+     <y>450</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -66,7 +66,7 @@ background-color: rgb(232, 232, 232);</string>
   <widget class="QPushButton" name="btn_refrescar_vent">
    <property name="geometry">
     <rect>
-     <x>540</x>
+     <x>550</x>
      <y>190</y>
      <width>75</width>
      <height>23</height>
@@ -83,7 +83,7 @@ background-color: rgb(232, 232, 232);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>260</y>
+     <y>290</y>
      <width>221</width>
      <height>191</height>
     </rect>
@@ -92,131 +92,13 @@ background-color: rgb(232, 232, 232);</string>
     <string notr="true">background-color: rgb(232, 232, 232);</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>12</y>
-     <width>200</width>
-     <height>170</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Descripcion</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="txt_nombre_art">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Codigo</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="txt_codigo_art">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);
-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Cantidad</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QSpinBox" name="spBox_cantidad">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="maximum">
-       <number>2000</number>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Fecha</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QDateEdit" name="dateEdit">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);
-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Bodega</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QComboBox" name="cmbox_bodegas">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Distribuidor</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QComboBox" name="cmbox_distribuidor">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Consecutivo</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLineEdit" name="txt_consecutivo">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(221, 221, 221);</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QTextEdit" name="textEdit_reportes">
    <property name="geometry">
     <rect>
      <x>320</x>
      <y>240</y>
      <width>311</width>
-     <height>181</height>
+     <height>201</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -227,7 +109,7 @@ background-color: rgb(232, 232, 232);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>240</y>
+     <y>260</y>
      <width>121</width>
      <height>20</height>
     </rect>
@@ -256,6 +138,165 @@ background-color: rgb(255, 255, 255);</string>
     <string>                REGISTROS COMPLETOS DE ARTICULOS</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_editar">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>190</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(235, 235, 235);
+</string>
+   </property>
+   <property name="text">
+    <string>Editar</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>200</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Codigo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="txt_codigo_art">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Bodega</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QComboBox" name="cmbox_bodegas">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Cantidad</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QSpinBox" name="spBox_cantidad">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="maximum">
+       <number>2000</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Fecha</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QComboBox" name="cmbox_distribuidor">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Consecutivo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>Estado</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Distribuidor</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLineEdit" name="txt_consecutivo">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(221, 221, 221);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QComboBox" name="cmb_estado">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>ENTRADA</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SALIDA</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Descripcion</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="txt_nombre_art">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>btn_agregar_tabla</zorder>
   <zorder>btn_abrir_reporte</zorder>
@@ -265,6 +306,9 @@ background-color: rgb(255, 255, 255);</string>
   <zorder>textEdit_reportes</zorder>
   <zorder>label_8</zorder>
   <zorder>label_9</zorder>
+  <zorder>cmb_estado</zorder>
+  <zorder>label_10</zorder>
+  <zorder>btn_editar</zorder>
  </widget>
  <resources/>
  <connections/>
