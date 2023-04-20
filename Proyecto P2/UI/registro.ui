@@ -157,7 +157,7 @@ background-color: rgb(63, 127, 94);</string>
     <rect>
      <x>410</x>
      <y>10</y>
-     <width>211</width>
+     <width>221</width>
      <height>16</height>
     </rect>
    </property>
@@ -302,7 +302,7 @@ background-color: rgb(63, 127, 94);</string>
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;  ALMACEN EL IRANI &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>

@@ -6,7 +6,7 @@ from PyQt6 import QtCore,QtWidgets,QtGui
 from PyQt6.QtWidgets import *
 from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.QtCore import *
-from UI.uiRegistro import Ui_Dialog
+from UI.uiRegistro import Ui_Control
 from Clases.claseArticulo import Articulo
 from Clases.claseDistribuidor import Distribuidor
 from Clases.claseBodega import Bodega
@@ -26,7 +26,7 @@ class Registro(QtWidgets.QDialog):
     
     def __init__(self, parent = None, _id = None):
         super(Registro, self).__init__(parent)
-        self.ui = Ui_Dialog()
+        self.ui = Ui_Control()
         self.ui.setupUi(self)
         self.o_registro = None
         self.ob_bodega = None
