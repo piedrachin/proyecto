@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Control</class>
+ <widget class="QDialog" name="Control">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>781</width>
+    <width>771</width>
     <height>582</height>
    </rect>
   </property>
@@ -17,29 +17,13 @@
    <string notr="true">
 background-color: rgb(63, 127, 94);</string>
   </property>
-  <widget class="QPushButton" name="btn_agregar">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>250</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(229, 229, 229);</string>
-   </property>
-   <property name="text">
-    <string>Guardar</string>
-   </property>
-  </widget>
   <widget class="QTableWidget" name="tbl_registro_articulos">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>20</y>
-     <width>561</width>
-     <height>281</height>
+     <x>230</x>
+     <y>40</y>
+     <width>541</width>
+     <height>251</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -171,10 +155,10 @@ background-color: rgb(63, 127, 94);</string>
   <widget class="QLabel" name="label_15">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>0</y>
-     <width>231</width>
-     <height>20</height>
+     <x>410</x>
+     <y>10</y>
+     <width>211</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -184,43 +168,11 @@ background-color: rgb(63, 127, 94);</string>
     <string>   INFORMACION GENERAL DE INVENTARIO</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_16">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>181</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string> CREAR, MODIFICAR ARTICULOS</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_nuevo_in">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>250</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(226, 226, 226);</string>
-   </property>
-   <property name="text">
-    <string>Nuevo</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>220</y>
+     <x>13</x>
+     <y>314</y>
      <width>16</width>
      <height>16</height>
     </rect>
@@ -229,7 +181,7 @@ background-color: rgb(63, 127, 94);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -289,11 +241,11 @@ background-color: rgb(63, 127, 94);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>310</y>
+     <x>530</x>
+     <y>350</y>
      <width>239</width>
      <height>25</height>
     </rect>
@@ -334,17 +286,43 @@ background-color: rgb(63, 127, 94);</string>
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(240, 240, 240);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;  ALMACEN EL IRANI &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>11</x>
-     <y>44</y>
+     <x>10</x>
+     <y>90</y>
      <width>195</width>
-     <height>146</height>
+     <height>194</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="label_16">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string> CREAR, MODIFICAR ARTICULOS</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
      <widget class="QLabel" name="label">
       <property name="styleSheet">
        <string notr="true">border-color: rgb(0, 170, 255);</string>
@@ -354,63 +332,63 @@ background-color: rgb(63, 127, 94);</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="1" column="1" colspan="2">
      <widget class="QLineEdit" name="txt_nombre">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="2" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
        <string>Codigo</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="2" column="1" colspan="2">
      <widget class="QLineEdit" name="txt_codigo">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
        <string>Costo</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="3" column="1" colspan="2">
      <widget class="QLineEdit" name="txt_costo">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="4" column="0">
      <widget class="QLabel" name="label_5">
       <property name="text">
        <string>Bodega</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="4" column="1" colspan="2">
      <widget class="QComboBox" name="cmb_registro">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
        <string>Cantidad</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="5" column="1" colspan="2">
      <widget class="QSpinBox" name="spBox_cantidad">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -420,17 +398,37 @@ background-color: rgb(63, 127, 94);</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
+    <item row="6" column="0">
      <widget class="QLabel" name="label_6">
       <property name="text">
        <string>Fecha</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="6" column="1" colspan="2">
      <widget class="QDateEdit" name="dateEdit">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0" colspan="2">
+     <widget class="QPushButton" name="btn_agregar">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(229, 229, 229);</string>
+      </property>
+      <property name="text">
+       <string>Guardar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QPushButton" name="btn_nuevo_in">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(226, 226, 226);</string>
+      </property>
+      <property name="text">
+       <string>Nuevo</string>
       </property>
      </widget>
     </item>
